@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/login")
 public class LoginController {
 
-    @Autowired
-    LoginService loginService;
-
-    @PostMapping("/signUp")
-    public ResponseDto<?> signUp(@RequestBody SignUpDto requestBody){
-        ResponseDto<?> result = loginService.signUp(requestBody);
-        return result;
-    }
+//    @Autowired
+//    LoginService loginService;
+//
+//    @PostMapping("/signUp")
+//    public ResponseDto<?> signUp(@RequestBody SignUpDto requestBody){
+//        ResponseDto<?> result = loginService.signUp(requestBody);
+//        return result;
+//    }
 
 }
