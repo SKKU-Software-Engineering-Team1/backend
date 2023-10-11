@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor(staticName="set")
 public class ResponseDto<D> {
 
-    private boolean result;
+    private boolean success;
     private String message;
     private D data;
 
