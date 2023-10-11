@@ -1,21 +1,18 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.GenderType;
+import com.example.demo.entity.enums.GenderType;
 import com.example.demo.entity.User;
 import com.example.demo.entity.UserTag;
-import com.example.demo.entity.UserTagType;
+import com.example.demo.entity.enums.UserTagType;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
