@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.example.demo.entity.enums.UnionSubType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +20,7 @@ public class Unions {
 
     @Id
     @GeneratedValue
-    @Column(name = "BOARD_ID")
+    @Column(name = "UNION_ID")
     private Long Id;
 
     private String unionName;

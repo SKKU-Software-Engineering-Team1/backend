@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.example.demo.entity.enums.GenderType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,7 +33,7 @@ public class User {
 
     private String userName; // DB 내부 user_name으로 변경
 
-    private int age;
+    private Integer userAge;
 
     // Enum 타입이 되 STRING으로 저장함.
     // 성별은 수정될 일이 없지만 다른 경우에 요청 사항이 늘어나면 이렇게 작성할 예정.
