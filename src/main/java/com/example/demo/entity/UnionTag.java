@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import com.example.demo.entity.enums.UnionTagType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +22,8 @@ public class UnionTag {
     private Long id;
 
     // 외래키 표시, 연관관계의 주인이라는 의미, UNION랑 조인돼서 가져옴.
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "UNION_ID")
     private Unions unions;
 

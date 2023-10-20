@@ -1,10 +1,9 @@
 package com.example.demo.entity;
 
+import com.example.demo.entity.enums.UnionCategoryType;
 import com.example.demo.entity.enums.UnionSubType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -50,6 +49,7 @@ public class Unions {
 
     private String unionContactMail;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "unions")
     @Builder.Default
     private List<UnionTag> unionTags = new ArrayList<>();
