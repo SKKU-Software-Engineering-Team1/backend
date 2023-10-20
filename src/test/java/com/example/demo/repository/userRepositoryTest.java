@@ -107,12 +107,12 @@ public class userRepositoryTest {
 
         // userTag 정보 넣고 저장
         UserTag userTag = UserTag.builder()
-                .userTag(UserTagType.EXTROVERTED)
+                .userTag(UserTagType.AI)
                 .user(user).build();
 
         // userTag 정보 넣고 저장
         UserTag userTag2 = UserTag.builder()
-                .userTag(UserTagType.INTROVERTED)
+                .userTag(UserTagType.loT)
                 .user(user).build();
 
         userTagRepository.save(userTag);
