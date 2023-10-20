@@ -1,44 +1,59 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.ResponseDto;
+import com.example.demo.entity.UnionTag;
 import com.example.demo.entity.Unions;
+import com.example.demo.entity.User;
+import com.example.demo.repository.LoginRepository;
 import com.example.demo.repository.UnionsRepository;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class RecruitService {
 
     private final UnionsRepository unionsRepository;
+    private final LoginRepository loginRepository;
 
-    public ResponseEntity<ResponseDto<?>> getList(Long union_id){
+    public ResponseDto<List<User>> getUserList(Long union_id){
         try {
-            List<Unions> union = unionsRepository.findAll();
-            System.out.println(union_id);
+//            List<Unions> union = unionsRepository.findAllUnionTags();
+            Optional<Unions> union = unionsRepository.findById(union_id);
+
             if(union.isEmpty()){
                 System.out.println("it is not existed");
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ResponseDto.setFailed("Union not found"));
+                return ResponseDto.setFailed("Union not found");
             }
-            UnionList unionList = new UnionList();
-            unionList.setList(union);
-            return ResponseEntity.ok(ResponseDto.setSuccess("Union List", unionList));
+
+            Unions unions = union.get();
+            List<UnionTag> list = unions.getUnionTags();
+            loginRepository.findAllUserTags();
+
+            return ResponseDto.setSuccess("Union List", loginRepository.findAllUserTags());
         } catch(Exception e){
             System.out.println(e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseDto.setFailed("INTERNAL_SERVER_ERROR"));
+            return ResponseDto.setFailed("INTERNAL_SERVER_ERROR");
         }
     }
 
-    @Getter
-    @Setter
-    public static class UnionList {
-        List<Unions> list;
+    public ResponseDto<Optional<User>> getUser(Long user_id){
+        try {
+            Optional<User> user = loginRepository.findById(user_id);
+
+            System.out.println("here!!");
+            if(user.isEmpty()){
+                System.out.println("it is not existed");
+                return ResponseDto.setFailed("User not found");
+            }
+            return ResponseDto.setSuccess("Union List", user);
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+            return ResponseDto.setFailed("INTERNAL_SERVER_ERROR");
+        }
     }
+
 }
