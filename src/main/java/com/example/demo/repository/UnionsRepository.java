@@ -7,7 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UnionsRepository extends JpaRepository<Unions, Long> {
+    @Query("select u from Unions u join fetch u.unionTags")
+    List<Unions> findAllUnionTags();
+    public Optional<Unions> findById(Long union_id);
 }
