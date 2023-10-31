@@ -1,24 +1,47 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.ResponseDto;
-import com.example.demo.dto.SignUpDto;
+import com.example.demo.dto.Login.LoginDto;
+import com.example.demo.dto.Login.Logout;
+import com.example.demo.dto.Login.Reissue;
+import com.example.demo.dto.Response;
+import com.example.demo.dto.Login.SignUpDto;
+import com.example.demo.jwt.JwtTokenProvider;
 import com.example.demo.service.LoginService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import com.example.demo.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/login")
+@RequestMapping("/api")
+@RequiredArgsConstructor
 public class LoginController {
 
-//    @Autowired
-//    LoginService loginService;
-//
-//    @PostMapping("/signUp")
-//    public ResponseDto<?> signUp(@RequestBody SignUpDto requestBody){
-//        ResponseDto<?> result = loginService.signUp(requestBody);
-//        return result;
-//    }
+    final JwtTokenProvider jwtTokenProvider;
+    final LoginService loginService;
+    final UserService userService;
+
+    @PostMapping("/login/signUp")
+    public ResponseEntity<?> signUp(@RequestBody SignUpDto requestBody){
+        return loginService.signUp(requestBody);
+    }
+
+
+    @PostMapping("/login/login")
+    public ResponseEntity<?> logIn(@RequestBody LoginDto loginDto){
+        return loginService.login(loginDto);
+    }
+
+    @PostMapping("/login/reissue")
+    public ResponseEntity<?> reissue(@RequestBody Reissue reissue){
+        return loginService.reissue(reissue);
+    }
+
+    @PostMapping("/login/logout")
+    public ResponseEntity<?> logout(@RequestBody Logout logout){
+        return loginService.logout(logout);
+    }
+
+
 
 }

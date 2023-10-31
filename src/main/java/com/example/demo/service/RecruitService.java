@@ -2,10 +2,10 @@ package com.example.demo.service;
 
 import com.example.demo.dto.RecruitingUserDto;
 import com.example.demo.dto.ResponseDto;
-import com.example.demo.entity.UnionTag;
-import com.example.demo.entity.Unions;
-import com.example.demo.entity.Users;
-import com.example.demo.entity.UserTag;
+import com.example.demo.entity.Union.UnionTag;
+import com.example.demo.entity.Union.Unions;
+import com.example.demo.entity.User.Users;
+import com.example.demo.entity.User.UserTag;
 import com.example.demo.entity.enums.TagType;
 import com.example.demo.repository.LoginRepository;
 import com.example.demo.repository.UnionsRepository;
@@ -52,7 +52,7 @@ public class RecruitService {
                         .collect(Collectors.toList()); // 이름들을 리스트로 수집
                 for (TagType tag : tags) {
                     if (userTags.contains(tag)) {
-                        RecruitingUserDto data = new RecruitingUserDto(user.getId(), user.getUserName(), user.getUserGender(), user.getUserAge(), user.getUserPhone(), user.getUserEmail(), user.getUserCampus(), user.getUserIntroduction(), userTags);
+                        RecruitingUserDto data = new RecruitingUserDto(user.getId(), user.getUsername(), user.getUserGender(), user.getUserAge(), user.getUserPhone(), user.getUserEmail(), user.getUserCampus(), user.getUserIntroduction(), userTags);
                         result.add(data);
                         System.out.println("ADD");
                         System.out.println(user);
@@ -83,7 +83,7 @@ public class RecruitService {
                     .map(UserTag::getUserTag) // Player 객체를 이름(String)으로 매핑
                     .collect(Collectors.toList()); // 이름들을 리스트로 수집
 
-            RecruitingUserDto result = new RecruitingUserDto(real.getId(), real.getUserName(), real.getUserGender(), real.getUserAge(), real.getUserPhone(), real.getUserEmail(), real.getUserCampus(), real.getUserIntroduction(), userTags);
+            RecruitingUserDto result = new RecruitingUserDto(real.getId(), real.getUsername(), real.getUserGender(), real.getUserAge(), real.getUserPhone(), real.getUserEmail(), real.getUserCampus(), real.getUserIntroduction(), userTags);
             return ResponseDto.setSuccess("Union List", result);
         } catch (Exception e) {
             System.out.println(e.getMessage());

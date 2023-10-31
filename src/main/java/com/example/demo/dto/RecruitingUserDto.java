@@ -1,6 +1,5 @@
 package com.example.demo.dto;
 
-import com.example.demo.entity.UserTag;
 import com.example.demo.entity.enums.CampusType;
 import com.example.demo.entity.enums.GenderType;
 import com.example.demo.entity.enums.TagType;

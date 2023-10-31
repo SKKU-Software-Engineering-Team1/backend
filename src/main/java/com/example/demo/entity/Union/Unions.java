@@ -1,16 +1,20 @@
-package com.example.demo.entity;
+package com.example.demo.entity.Union;
 
 import com.example.demo.entity.enums.UnionCategoryType;
 import com.example.demo.entity.enums.UnionSubType;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Data // @Getter, Setter, ToString, RequiredArgsConstructor, EqualsAndHashCode 적용
 @Builder
 @Entity
 @AllArgsConstructor // constructor 생성
@@ -19,7 +23,7 @@ public class Unions {
 
     @Id
     @GeneratedValue
-    @Column(name = "UNION_ID")
+    @Column(name = "UNIONS_ID")
     private Long Id;
 
     private String unionName;

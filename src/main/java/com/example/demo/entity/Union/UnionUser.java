@@ -1,6 +1,7 @@
-package com.example.demo.entity;
+package com.example.demo.entity.Union;
 
 import com.example.demo.entity.enums.GenderType;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
