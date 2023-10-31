@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.demo.entity.Union;
 
 import com.example.demo.entity.enums.UnionCategoryType;
 import com.example.demo.entity.enums.UnionSubType;
@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -50,8 +51,15 @@ public class Unions {
 
     private String unionContactPhone;
 
+    private String unionKakao;
+
+    private String unionSns;
+
     private String unionContactMail;
 
+    private String unionYears;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "unions")
     @Builder.Default
     private List<UnionTag> unionTags = new ArrayList<>();

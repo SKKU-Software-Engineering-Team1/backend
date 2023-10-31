@@ -1,8 +1,7 @@
 package com.example.demo.entity.User;
 
-import com.example.demo.entity.enums.GenderType;
-import com.example.demo.entity.enums.SchoolType;
-import com.example.demo.entity.enums.UserTagType;
+import com.example.demo.entity.enums.CampusType;
+import com.example.demo.entity.enums.GenderType;;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,11 +40,15 @@ public class Users implements UserDetails {
     private String userName; // DB 내부 user_name으로 변경
 
     // 이거 어디에는 있고 어디에는 없어서 그냥 일단 넣었습니다. 2023/10/28 백명규
-    private String userPhonenumber;
+    private String userPhone;
 
     // 이것도 로그인 화면에는 안 보이는데 일단 넣었습니다. 2023/10/28 백명규
     @Enumerated(EnumType.STRING)
-    private SchoolType userSchool;
+    private CampusType userCampus;
+
+    private String userIntroduction;
+
+    private String userPhotoPath;
 
     private int userAge;
 

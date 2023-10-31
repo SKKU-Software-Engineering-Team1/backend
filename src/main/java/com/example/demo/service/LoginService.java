@@ -5,7 +5,7 @@ import com.example.demo.dto.Response;
 import com.example.demo.entity.Token;
 import com.example.demo.entity.enums.Authority;
 import com.example.demo.entity.enums.GenderType;
-import com.example.demo.entity.enums.SchoolType;
+import com.example.demo.entity.enums.CampusType;
 import com.example.demo.entity.User.Users;
 import com.example.demo.entity.User.UserTag;
 import com.example.demo.jwt.JwtTokenProvider;
@@ -55,7 +55,7 @@ public class LoginService {
         String userName = dto.getUserName();
         String userGender = dto.getUserGender();
         List<String> userTags = dto.getUserTags();
-        String userSchool = dto.getUserSchool();
+        String userCampus = dto.getUserCampus();
 
 
         // email이 DB 내부에 있는지만 확인
@@ -67,16 +67,16 @@ public class LoginService {
             try{
 
                 GenderType genderType= GenderType.getGender(userGender);
-                SchoolType schoolType = SchoolType.getSchool(userSchool);
+                CampusType campType = CampusType.getCampus(userCampus);
 
-                Users users = Users.builder()
+                 Users users = Users.builder()
                         .userEmail(userEmail)
                         .userPassword(passwordEncoder.encode(userPassword))
                         .userName(userName)
                         .userGender(genderType)
                         .userAge(userAge)
-                        .userSchool(schoolType)
-                        .userPhonenumber(userPhoneNumber)
+                        .userCampus(campType)
+                        .userPhone(userPhoneNumber)
                         .roles(Collections.singletonList(Authority.USER.name()))
                         .build();
 

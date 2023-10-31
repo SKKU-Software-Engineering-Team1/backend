@@ -158,7 +158,7 @@ public class userRepositoryTest {
                 .userAge(25)
                 .userPhoneNumber("12345678")
                 .userGender("MALE")
-                .userSchool("NATURAL")
+                .userCampus("NATURAL")
                 .userTags(tmpStr)
                 .build();
 

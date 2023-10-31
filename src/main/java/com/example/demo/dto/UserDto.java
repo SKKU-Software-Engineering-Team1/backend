@@ -19,7 +19,7 @@ public class UserDto {
     String userPhoneNumber;
     String userEmail;
 
-    String userSchool;
+    String userCampus;
 
     List<String> userTags;
 }

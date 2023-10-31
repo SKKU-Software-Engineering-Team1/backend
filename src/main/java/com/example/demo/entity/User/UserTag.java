@@ -1,7 +1,6 @@
 package com.example.demo.entity.User;
 
-import com.example.demo.entity.User.Users;
-import com.example.demo.entity.enums.UserTagType;
+import com.example.demo.entity.enums.TagType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,6 +28,6 @@ public class UserTag {
     // 이 경우에 요청 사항이 늘어나면 이게 매우 유리함.
     @Enumerated(EnumType.STRING)
     @NotNull
-    private UserTagType userTag;
+    private TagType userTag;
 
 }

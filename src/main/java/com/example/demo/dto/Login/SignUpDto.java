@@ -20,7 +20,7 @@ public class SignUpDto {
     private String userName;
     private String userGender;
     private String userPhoneNumber;
-    private String userSchool;
+    private String userCampus;
 
     private List<String> userTags;
 
