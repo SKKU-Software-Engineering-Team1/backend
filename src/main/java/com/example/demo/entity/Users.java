@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor // constructor 생성
 @NoArgsConstructor // getter, setter 생성
-public class User {
+public class Users {
 
     // 혹시나 나중에 수정할지도 몰라서 전혀 관련이 없는 DB 자체 내부 설정값을 PK로 두겠습니다.
     // 다른 Table에서도 id를 사용할 예정이니까. 얘만 이름을 따로 설정할게요.

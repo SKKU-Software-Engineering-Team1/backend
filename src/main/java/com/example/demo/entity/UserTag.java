@@ -19,7 +19,7 @@ public class UserTag {
     // 외래키 표시, 연관관계의 주인이라는 의미, user랑 조인돼서 가져옴.
     @ManyToOne
     @JoinColumn(name = "USER_ID")
-    private User user;
+    private Users user;
 
     // Enum 타입이 되 STRING으로 저장함.
     // 이 경우에 요청 사항이 늘어나면 이게 매우 유리함.

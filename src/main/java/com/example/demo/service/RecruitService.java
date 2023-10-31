@@ -4,7 +4,7 @@ import com.example.demo.dto.RecruitingUserDto;
 import com.example.demo.dto.ResponseDto;
 import com.example.demo.entity.UnionTag;
 import com.example.demo.entity.Unions;
-import com.example.demo.entity.User;
+import com.example.demo.entity.Users;
 import com.example.demo.entity.UserTag;
 import com.example.demo.entity.enums.TagType;
 import com.example.demo.repository.LoginRepository;
@@ -42,11 +42,11 @@ public class RecruitService {
                     .collect(Collectors.toList()); // 이름들을 리스트로 수집
 
 //            loginRepository.findAllUserTags();
-            List<User> users = loginRepository.findAllUserTags();
+            List<Users> users = loginRepository.findAllUserTags();
             System.out.println("RecruitService.getUserList");
 //            System.out.println(users);
             List<RecruitingUserDto> result = new ArrayList<>();
-            for (User user : users) {
+            for (Users user : users) {
                 List<TagType> userTags = user.getUserTags().stream()
                         .map(UserTag::getUserTag) // Player 객체를 이름(String)으로 매핑
                         .collect(Collectors.toList()); // 이름들을 리스트로 수집
@@ -71,14 +71,14 @@ public class RecruitService {
 
     public ResponseDto<RecruitingUserDto> getUser(Long user_id) {
         try {
-            Optional<User> user = loginRepository.findById(user_id);
+            Optional<Users> user = loginRepository.findById(user_id);
 
             System.out.println("here!!");
             if (user.isEmpty()) {
                 System.out.println("it is not existed");
                 return ResponseDto.setFailed("User not found");
             }
-            User real = user.get();
+            Users real = user.get();
             List<TagType> userTags = real.getUserTags().stream()
                     .map(UserTag::getUserTag) // Player 객체를 이름(String)으로 매핑
                     .collect(Collectors.toList()); // 이름들을 리스트로 수집

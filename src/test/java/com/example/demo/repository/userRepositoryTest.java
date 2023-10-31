@@ -1,7 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.entity.enums.GenderType;
-import com.example.demo.entity.User;
+import com.example.demo.entity.Users;
 import com.example.demo.entity.UserTag;
 import com.example.demo.entity.enums.TagType;
 import org.assertj.core.api.Assertions;
@@ -31,19 +31,19 @@ public class userRepositoryTest {
     @Test
     void findAllFromUser(){
         // 멤버 객체 생성 부분
-        User user = User.builder()
+        Users user = Users.builder()
                 .userEmail("qwer@qwer")
                 .userPassword("qwer")
                 .userGender(GenderType.MALE)
                 .build();
 
-        User user2 = User.builder()
+        Users user2 = Users.builder()
                 .userEmail("qwer1@qwer")
                 .userPassword("qwer")
                 .userGender(GenderType.MALE)
                 .build();
 
-        User user3 = User.builder()
+        Users user3 = Users.builder()
                 .userEmail("qwer2@qwer")
                 .userPassword("qwer")
                 .userGender(GenderType.MALE)
@@ -62,7 +62,7 @@ public class userRepositoryTest {
         // em.clear();
         // em.flush();
 
-        List<User> users = loginRepository.findAll();
+        List<Users> users = loginRepository.findAll();
 
         // 이건 제가 검증하는 부분으로 hasSize는 리스트 객체의 내부 객체 갯수를 비교해줍니다.
         // 저거 개수가 다르면 실제로 받은 건 null인지 아니면 2개인지 그런 정보도 다 로그로 띄워줘요.
@@ -74,7 +74,7 @@ public class userRepositoryTest {
         @Test
         void findAllMemberWithEmail(){
             // user 데이터를 넣는 부분
-            User user = User.builder()
+            Users user = Users.builder()
                     .userEmail("qwer@qwer")
                     .userPassword("qwer")
                     .userGender(GenderType.MALE)
@@ -88,7 +88,7 @@ public class userRepositoryTest {
 
 
             // 마치 select * from user u where user_email = qwer@qwer의 역할을 findByUserEmail이 합니다.
-            User findUser = loginRepository.findByUserEmail("qwer@qwer");
+            Users findUser = loginRepository.findByUserEmail("qwer@qwer");
 
             // 저건 글자 같은지 확인해주는 메서드에요. Java에서는 ==이랑 equals 뭐 되게 많아요.
             // 해당 부분은 나중에 각각 무슨 차이인지 공부해보시면 도움이 많이 될 겁니다.
@@ -99,7 +99,7 @@ public class userRepositoryTest {
     @Test // 이건 데이터를 join해서 가져오는 거에요. query는 LoginRepository 확인 부탁드립니다.
     void userTagTest(){
         // user 데이터 넣고 저장
-        User user = User.builder()
+        Users user = Users.builder()
                 .userEmail("qwer@qwer1r")
                 .userPassword("qwer")
                 .userGender(GenderType.MALE)
@@ -125,9 +125,9 @@ public class userRepositoryTest {
 
 
         // 이제 fetch join으로 한번에
-        List<User> users = loginRepository.findAllUserTags();
+        List<Users> users = loginRepository.findAllUserTags();
 
-        User findUser = users.get(0);
+        Users findUser = users.get(0);
 
         System.out.println(findUser.getUserTags().get(0).getUserTag());
         System.out.println(findUser.getUserTags().get(1).getUserTag());

@@ -2,10 +2,9 @@ package com.example.demo.service;
 
 import com.example.demo.dto.ResponseDto;
 import com.example.demo.dto.SignUpDto;
-import com.example.demo.entity.User;
+import com.example.demo.entity.Users;
 import com.example.demo.repository.LoginRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,7 +21,7 @@ public class LoginService {
         String userPhoneNumber = dto.getUserPhoneNumber();
 
         // email이 DB 내부에 있는지만 확인
-        User user = loginRepository.findByUserEmail(userEmail);
+        Users user = loginRepository.findByUserEmail(userEmail);
 
         if(user == null){
             System.out.println("it is not existed");
