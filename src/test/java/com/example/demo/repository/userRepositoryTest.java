@@ -3,7 +3,7 @@ package com.example.demo.repository;
 import com.example.demo.entity.enums.GenderType;
 import com.example.demo.entity.User;
 import com.example.demo.entity.UserTag;
-import com.example.demo.entity.enums.UserTagType;
+import com.example.demo.entity.enums.TagType;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,12 +107,12 @@ public class userRepositoryTest {
 
         // userTag 정보 넣고 저장
         UserTag userTag = UserTag.builder()
-                .userTag(UserTagType.AI)
+                .userTag(TagType.AI)
                 .user(user).build();
 
         // userTag 정보 넣고 저장
         UserTag userTag2 = UserTag.builder()
-                .userTag(UserTagType.loT)
+                .userTag(TagType.loT)
                 .user(user).build();
 
         userTagRepository.save(userTag);

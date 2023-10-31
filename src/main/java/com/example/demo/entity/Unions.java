@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data // @Getter, Setter, ToString, RequiredArgsConstructor, EqualsAndHashCode 적용
+@Data
 @Builder
 @Entity
 @AllArgsConstructor // constructor 생성
@@ -47,7 +47,13 @@ public class Unions {
 
     private String unionContactPhone;
 
+    private String unionKakao;
+
+    private String unionSns;
+
     private String unionContactMail;
+
+    private String unionYears;
 
     @JsonIgnore
     @OneToMany(mappedBy = "unions")

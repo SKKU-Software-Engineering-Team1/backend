@@ -1,17 +1,17 @@
 package com.example.demo.entity;
 
 import com.example.demo.entity.enums.GenderType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.example.demo.entity.enums.CampusType;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@ToString(exclude = {"userTags"})
 @Builder
 @Entity
 @AllArgsConstructor // constructor 생성
@@ -30,10 +30,18 @@ public class User {
     @NotNull
     private String userPassword; // DB 내부 user_password로 변경
 
-
     private String userName; // DB 내부 user_name으로 변경
 
     private Integer userAge;
+
+    private String userPhone;
+
+    @Enumerated(EnumType.STRING)
+    private CampusType userCampus;
+
+    private String userIntroduction;
+
+    private String userPhotoPath;
 
     // Enum 타입이 되 STRING으로 저장함.
     // 성별은 수정될 일이 없지만 다른 경우에 요청 사항이 늘어나면 이렇게 작성할 예정.

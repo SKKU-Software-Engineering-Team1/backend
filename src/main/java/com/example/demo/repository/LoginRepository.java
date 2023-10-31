@@ -13,8 +13,6 @@ public interface LoginRepository extends JpaRepository<User, Long> {
     @Query("select u from User u join fetch u.userTags")
     List<User> findAllUserTags();
 
-    public Optional<User> findById(Long user_id);
-
     // 유저의 이메일 정보로 찾는 함수
     public User findByUserEmail(String UserEmail);
 }

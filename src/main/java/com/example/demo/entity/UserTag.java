@@ -1,10 +1,7 @@
 package com.example.demo.entity;
 
-import com.example.demo.entity.enums.UserTagType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.example.demo.entity.enums.TagType;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -28,5 +25,5 @@ public class UserTag {
     // 이 경우에 요청 사항이 늘어나면 이게 매우 유리함.
     @Enumerated(EnumType.STRING)
     @NotNull
-    private UserTagType userTag;
+    private TagType userTag;
 }

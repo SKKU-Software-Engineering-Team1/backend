@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.RecruitingUserDto;
 import com.example.demo.dto.ResponseDto;
 import com.example.demo.entity.User;
 import com.example.demo.service.RecruitService;
@@ -22,14 +23,14 @@ public class RecruitController {
     @Operation(summary = "로그인한 유저(임원진)의 동아리를 위한 추천 후보 리스트 불러오기", description = "")
     @GetMapping("userList")
     @Tag(name = "Recruit")
-    public ResponseDto<List<User>> getUserList(@RequestParam Long union_id) {
+    public ResponseDto<List<RecruitingUserDto>> getUserList(@RequestParam Long union_id) {
         return recruitService.getUserList(union_id);
     }
 
     @Operation(summary = "해당 유저 정보 가져오기", description = "")
     @GetMapping("userInfo")
     @Tag(name = "Recruit")
-    public ResponseDto<Optional<User>> getUserInfo(@RequestParam Long user_id) {
+    public ResponseDto<RecruitingUserDto> getUserInfo(@RequestParam Long user_id) {
         return recruitService.getUser(user_id);
     }
 

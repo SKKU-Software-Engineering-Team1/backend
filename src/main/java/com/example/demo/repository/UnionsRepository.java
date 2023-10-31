@@ -13,5 +13,7 @@ import java.util.Optional;
 public interface UnionsRepository extends JpaRepository<Unions, Long> {
     @Query("select u from Unions u join fetch u.unionTags")
     List<Unions> findAllUnionTags();
+
+    @Query("select u from Unions u join fetch u.unionTags where u.Id = :union_id")
     public Optional<Unions> findById(Long union_id);
 }
