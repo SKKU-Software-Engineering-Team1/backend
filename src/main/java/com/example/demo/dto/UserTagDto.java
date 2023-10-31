@@ -1,15 +1,18 @@
 package com.example.demo.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.List;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SignUpDto {
-    private String userEmail;
-    private String userPassword;
-    private String userName;
-    private String userPhoneNumber;
+public class UserTagDto {
+
+    String userName;
+
+    List<String> userTags;
 }
