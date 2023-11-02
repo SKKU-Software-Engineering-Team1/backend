@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-11-02T16:31:21.351Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="PtX54Ai3SXFh2ffeneMX" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-02T16:34:53.168Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="FEP2hgNAXeUmSXdu2Hs-" version="22.0.8" type="github">
   <diagram name="Page-1" id="929967ad-93f9-6ef4-fab6-5d389245f69c">
     <mxGraphModel dx="1865" dy="1189" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1.5" pageWidth="1169" pageHeight="826" background="none" math="0" shadow="0">
       <root>
@@ -65,10 +65,10 @@
           <mxGeometry x="510" y="900" width="140" height="70" as="geometry" />
         </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-26" value="모집 동아리&lt;br&gt;리스트 조회" style="ellipse;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
-          <mxGeometry x="410" y="1120" width="190" height="70" as="geometry" />
+          <mxGeometry x="410" y="1087" width="190" height="70" as="geometry" />
         </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-27" value="지원자 리스트 조회" style="ellipse;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
-          <mxGeometry x="500" y="1340" width="190" height="70" as="geometry" />
+          <mxGeometry x="500" y="1360" width="190" height="70" as="geometry" />
         </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-28" value="추천 동아리 조회" style="ellipse;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
           <mxGeometry x="470" y="1254" width="140" height="70" as="geometry" />
@@ -236,7 +236,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-76" value="동아리 검색" style="ellipse;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
-          <mxGeometry x="661" y="1186" width="140" height="70" as="geometry" />
+          <mxGeometry x="452" y="1170" width="140" height="70" as="geometry" />
         </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-13" value="동아리 정보 및 동아리원 후보 탐색" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
           <mxGeometry x="670" y="1030" width="100" height="40" as="geometry" />
@@ -245,7 +245,7 @@
           <mxGeometry x="670" y="1472" width="100" height="40" as="geometry" />
         </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-82" value="동아리 정보&lt;br style=&quot;font-size: 18px;&quot;&gt;" style="ellipse;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
-          <mxGeometry x="873" y="1162" width="140" height="70" as="geometry" />
+          <mxGeometry x="763" y="1162" width="140" height="70" as="geometry" />
         </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-83" value="지원자 정보" style="ellipse;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">
           <mxGeometry x="877" y="1250" width="140" height="70" as="geometry" />
@@ -277,13 +277,6 @@
             <mxPoint x="817" y="1585" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="likXTlJJLtv1iGbb97qb-89" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;dashed=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;fontSize=15;" edge="1" parent="1" source="likXTlJJLtv1iGbb97qb-76" target="likXTlJJLtv1iGbb97qb-26">
-          <mxGeometry x="0.0002" width="160" relative="1" as="geometry">
-            <mxPoint x="770" y="1115" as="sourcePoint" />
-            <mxPoint x="620" y="1155" as="targetPoint" />
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-90" value="" style="html=1;endArrow=none;elbow=vertical;rounded=0;" edge="1" parent="1" target="likXTlJJLtv1iGbb97qb-82">
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="1180" y="980" as="sourcePoint" />
@@ -312,6 +305,18 @@
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="529" y="1136" as="sourcePoint" />
             <mxPoint x="931" y="1150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="likXTlJJLtv1iGbb97qb-98" value="" style="html=1;endArrow=none;elbow=vertical;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="likXTlJJLtv1iGbb97qb-76" target="likXTlJJLtv1iGbb97qb-82">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="610" y="1165" as="sourcePoint" />
+            <mxPoint x="904" y="1182" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="likXTlJJLtv1iGbb97qb-99" value="" style="html=1;endArrow=none;elbow=vertical;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="likXTlJJLtv1iGbb97qb-76">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="270" y="1101" as="sourcePoint" />
+            <mxPoint x="420" y="1165" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
