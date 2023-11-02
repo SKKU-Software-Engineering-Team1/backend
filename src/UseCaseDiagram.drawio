@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-11-02T10:43:16.810Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="D-HFAU-qmFdBfwVjp6i1" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-02T10:54:00.152Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="y_2_YSJCLsSTpNYG7t82" version="22.0.8" type="github">
   <diagram name="Page-1" id="929967ad-93f9-6ef4-fab6-5d389245f69c">
-    <mxGraphModel dx="1026" dy="654" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1.5" pageWidth="1169" pageHeight="826" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1578" dy="1006" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1.5" pageWidth="1169" pageHeight="826" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" style=";html=1;" />
         <mxCell id="1" style=";html=1;" parent="0" />
@@ -16,11 +16,8 @@
         <mxCell id="likXTlJJLtv1iGbb97qb-4" value="일반 사용자" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
           <mxGeometry x="260" y="890" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="likXTlJJLtv1iGbb97qb-5" value="Actor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1150" y="590" width="30" height="60" as="geometry" />
-        </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-6" value="동아리 임원진 사용자&lt;br&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="1">
-          <mxGeometry x="250" y="1060" width="30" height="60" as="geometry" />
+          <mxGeometry x="200" y="1090" width="30" height="60" as="geometry" />
         </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-7" value="" style="rounded=0;whiteSpace=wrap;html=1;imageWidth=24;imageHeight=24;" vertex="1" parent="1">
           <mxGeometry x="480" y="390" width="430" height="320" as="geometry" />
@@ -44,10 +41,10 @@
           <mxGeometry x="645" y="1030" width="100" height="40" as="geometry" />
         </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-14" value="" style="rounded=0;whiteSpace=wrap;html=1;imageWidth=24;imageHeight=24;" vertex="1" parent="1">
-          <mxGeometry x="480" y="1420" width="430" height="190" as="geometry" />
+          <mxGeometry x="480" y="1350" width="430" height="260" as="geometry" />
         </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-15" value="다이렉트 메시지" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" vertex="1" parent="1">
-          <mxGeometry x="650" y="1430" width="100" height="40" as="geometry" />
+          <mxGeometry x="650" y="1360" width="100" height="40" as="geometry" />
         </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-19" value="회원가입" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="510" y="430" width="140" height="70" as="geometry" />
@@ -77,19 +74,19 @@
           <mxGeometry x="530" y="1090" width="140" height="70" as="geometry" />
         </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-27" value="동아리원 후보 리스트 조회" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="530" y="1250" width="140" height="70" as="geometry" />
+          <mxGeometry x="580" y="1250" width="140" height="70" as="geometry" />
         </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-28" value="추천 동아리 조회" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="530" y="1169" width="140" height="70" as="geometry" />
         </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-29" value="동아리 임원진에게 보내기" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="670" y="1470" width="140" height="70" as="geometry" />
+          <mxGeometry x="700" y="1445" width="140" height="70" as="geometry" />
         </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-30" value="동아리원 후보에게 보내기&lt;br&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="750" y="1520" width="140" height="70" as="geometry" />
+          <mxGeometry x="530" y="1510" width="140" height="70" as="geometry" />
         </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-31" value="메시지 목록 조회" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="540" y="1530" width="140" height="70" as="geometry" />
+          <mxGeometry x="510" y="1420" width="140" height="70" as="geometry" />
         </mxCell>
         <mxCell id="likXTlJJLtv1iGbb97qb-35" style="orthogonalLoop=1;jettySize=auto;html=1;strokeColor=default;rounded=0;endArrow=block;endFill=0;" edge="1" parent="1" source="likXTlJJLtv1iGbb97qb-34" target="likXTlJJLtv1iGbb97qb-3">
           <mxGeometry relative="1" as="geometry" />
@@ -152,7 +149,7 @@
         <mxCell id="likXTlJJLtv1iGbb97qb-54" value="임원진&amp;nbsp;인증" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="730" y="780" width="140" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="likXTlJJLtv1iGbb97qb-55" value="" style="html=1;endArrow=none;elbow=vertical;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="likXTlJJLtv1iGbb97qb-6" target="likXTlJJLtv1iGbb97qb-24">
+        <mxCell id="likXTlJJLtv1iGbb97qb-55" value="" style="html=1;endArrow=none;elbow=vertical;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.75;exitY=0.1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="likXTlJJLtv1iGbb97qb-6" target="likXTlJJLtv1iGbb97qb-24">
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="294" y="707" as="sourcePoint" />
             <mxPoint x="530" y="665" as="targetPoint" />
@@ -164,7 +161,7 @@
             <mxPoint x="520" y="860" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="likXTlJJLtv1iGbb97qb-57" value="" style="html=1;endArrow=none;elbow=vertical;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="likXTlJJLtv1iGbb97qb-25">
+        <mxCell id="likXTlJJLtv1iGbb97qb-57" value="" style="html=1;endArrow=none;elbow=vertical;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="likXTlJJLtv1iGbb97qb-6" target="likXTlJJLtv1iGbb97qb-25">
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="280" y="1090" as="sourcePoint" />
             <mxPoint x="520" y="860" as="targetPoint" />
@@ -213,11 +210,35 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="likXTlJJLtv1iGbb97qb-71" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;dashed=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="likXTlJJLtv1iGbb97qb-62" target="likXTlJJLtv1iGbb97qb-28">
-          <mxGeometry x="0.0002" width="160" relative="1" as="geometry">
+        <mxCell id="likXTlJJLtv1iGbb97qb-71" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;dashed=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="likXTlJJLtv1iGbb97qb-62" target="likXTlJJLtv1iGbb97qb-27">
+          <mxGeometry x="-0.005" width="160" relative="1" as="geometry">
             <mxPoint x="770" y="1115" as="sourcePoint" />
             <mxPoint x="680" y="1135" as="targetPoint" />
             <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="likXTlJJLtv1iGbb97qb-72" value="" style="html=1;endArrow=none;elbow=vertical;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="likXTlJJLtv1iGbb97qb-6" target="likXTlJJLtv1iGbb97qb-31">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="290" y="1120" as="sourcePoint" />
+            <mxPoint x="540" y="1295" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="likXTlJJLtv1iGbb97qb-73" value="" style="html=1;endArrow=none;elbow=vertical;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="likXTlJJLtv1iGbb97qb-31">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="300" y="970" as="sourcePoint" />
+            <mxPoint x="520" y="1465" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="likXTlJJLtv1iGbb97qb-74" value="" style="html=1;endArrow=none;elbow=vertical;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="likXTlJJLtv1iGbb97qb-29">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="280" y="970" as="sourcePoint" />
+            <mxPoint x="541" y="1440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="likXTlJJLtv1iGbb97qb-75" value="" style="html=1;endArrow=none;elbow=vertical;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="likXTlJJLtv1iGbb97qb-6" target="likXTlJJLtv1iGbb97qb-30">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="240" y="1147" as="sourcePoint" />
+            <mxPoint x="520" y="1465" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
