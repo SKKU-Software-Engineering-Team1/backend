@@ -13,13 +13,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RecruitingUserDto {
-        private Long userId;
-        private String userName;
-        private GenderType userGender;
-        private Integer userAge;
-        private String userPhone;
-        private String userEmail;
-        private CampusType userCampus;
-        private String userIntroduction;
-        private List<TagType> userTags;
+    private Long userId;
+    private String userName;
+    private GenderType userGender;
+    private Integer userAge;
+    private String userPhone;
+    private String userEmail;
+    private CampusType userCampus;
+    private String userIntroduction;
+    private List<TagType> userTags;
 }

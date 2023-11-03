@@ -2,21 +2,21 @@ package com.example.demo.entity.Union;
 
 import com.example.demo.entity.enums.GenderType;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
-@Builder
-@Entity
+@Getter
+@Setter
 @AllArgsConstructor // constructor 생성
 @NoArgsConstructor // getter, setter 생성
+@ToString(exclude = {"unions"})
+@Entity
+@Builder
 public class UnionUser {
-    @Id @GeneratedValue
-    @Column(name="UNION_USER_ID")
+    @Id
+    @GeneratedValue
+    @Column(name = "UNION_USER_ID")
     private Long Id;
 
     // 외래키 표시, 연관관계의 주인이라는 의미, UNION랑 조인돼서 가져옴.

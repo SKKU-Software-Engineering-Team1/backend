@@ -19,7 +19,7 @@ public class Token {
 
     @Id
     @GeneratedValue
-    @Column(name="TOKEN_ID")
+    @Column(name = "TOKEN_ID")
     private Long id;
 
     private String authName;
