@@ -25,6 +25,7 @@ public class LoginController {
         return loginService.signUp(requestBody);
     }
 
+
     @PostMapping("/login/login")
     public ResponseEntity<?> logIn(@RequestBody LoginDto loginDto){
         return loginService.login(loginDto);
