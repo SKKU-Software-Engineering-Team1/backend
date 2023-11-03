@@ -1,21 +1,21 @@
 package com.example.demo.entity.User;
 
 import com.example.demo.entity.enums.TagType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Data
-@Builder
-@Entity // Entity 테이블 표시
+@Getter
+@Setter
 @AllArgsConstructor // constructor 생성
 @NoArgsConstructor // getter, setter 생성
+@ToString(exclude = {"users"})
+@Entity // Entity 테이블 표시
+@Builder
 public class UserTag {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "USER_TAG_ID")
     private Long id;
 

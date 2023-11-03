@@ -17,7 +17,7 @@ public class UserInfoController {
     final UserService userService;
 
     @PostMapping("/UserInfo/userInfo")
-    public ResponseEntity<?> UserInfo(@RequestHeader("Authorization") String accessToken){
+    public ResponseEntity<?> UserInfo(@RequestHeader("Authorization") String accessToken) {
         System.out.println("here " + accessToken);
         return userService.getUserInfomation(accessToken);
     }

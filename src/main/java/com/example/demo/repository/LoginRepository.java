@@ -13,7 +13,7 @@ public interface LoginRepository extends JpaRepository<Users, Long> {
     List<Users> findAllUserTags();
 
     // 유저의 이메일 정보로 찾는 함수
-    public Users findByUserEmail(String userEmail);
+    Users findByUserEmail(String userEmail);
 
-    public boolean existsByUserEmail(String userEmail);
+    boolean existsByUserEmail(String userEmail);
 }
