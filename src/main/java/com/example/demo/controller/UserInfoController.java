@@ -18,9 +18,7 @@ public class UserInfoController {
 
     @PostMapping("/UserInfo/userInfo")
     public ResponseEntity<?> UserInfo(@RequestHeader("Authorization") String accessToken){
-
         return userService.getUserInfomation(accessToken);
-
     }
 
     @PostMapping("/UserInfo/userShortInfo")

@@ -1,6 +1,6 @@
 package com.example.demo.entity.enums;
 
-public enum UserTagType {
+public enum TagType {
     맛집, 번개, 핫플, 연합, 프로젝트, 기획, 친목, 보드게임, 술, 여행, AI,
     부트캠프, 블로그, 스터디, 멘토링, 개발, 데이터, 수학, 세미나, 튜터링, 경기도, 노래,
     버스킹, 정기공연, 밴드, 수도권, 애니메이션, 덕질, 만화카페, 서브컬쳐, 모션그래픽, SNS,

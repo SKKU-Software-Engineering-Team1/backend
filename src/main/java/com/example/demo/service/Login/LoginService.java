@@ -5,7 +5,7 @@ import com.example.demo.dto.Response;
 import com.example.demo.entity.Token;
 import com.example.demo.entity.enums.Authority;
 import com.example.demo.entity.enums.GenderType;
-import com.example.demo.entity.enums.SchoolType;
+import com.example.demo.entity.enums.CampusType;
 import com.example.demo.entity.User.Users;
 import com.example.demo.entity.User.UserTag;
 import com.example.demo.jwt.JwtTokenProvider;
@@ -45,7 +45,7 @@ public class LoginService {
     final AuthenticationManagerBuilder authenticationManagerBuilder;
 
     // SignUp 완료
-    public ResponseEntity<?> signUp(SignUpDto dto){
+    public ResponseEntity<?> signUp(SignUpDto dto) {
 
         String userEmail = dto.getUserEmail();
         String userPassword = dto.getUserPassword();
@@ -55,19 +55,19 @@ public class LoginService {
         String userName = dto.getUserName();
         String userGender = dto.getUserGender();
         List<String> userTags = dto.getUserTags();
-        String userSchool = dto.getUserSchool();
+        String userCampus = dto.getUserCampus();
 
 
         // email이 DB 내부에 있는지만 확인
         final boolean userExist = loginRepository.existsByUserEmail(userEmail);
 
         // 유저 없음 회원가입 가능!
-        if(!userExist){
+        if (!userExist) {
 
-            try{
+            try {
 
-                GenderType genderType= GenderType.getGender(userGender);
-                SchoolType schoolType = SchoolType.getSchool(userSchool);
+                GenderType genderType = GenderType.getGender(userGender);
+                CampusType campType = CampusType.getCampus(userCampus);
 
                 Users users = Users.builder()
                         .userEmail(userEmail)
@@ -75,8 +75,8 @@ public class LoginService {
                         .userNames(userName)
                         .userGender(genderType)
                         .userAge(userAge)
-                        .userSchool(schoolType)
-                        .userPhonenumber(userPhoneNumber)
+                        .userCampus(campType)
+                        .userPhone(userPhoneNumber)
                         .roles(Collections.singletonList(Authority.USER.name()))
                         .build();
 
@@ -92,11 +92,11 @@ public class LoginService {
                     userTagRepository.save(userTag);
                 }
 
-            } catch(Exception e){
+            } catch (Exception e) {
                 return response.fail("데이터 베이스 오류입니다.", HttpStatus.BAD_REQUEST);
             }
 
-        } else{
+        } else {
             return response.fail("이미 회원가입된 이메일입니다.", HttpStatus.BAD_REQUEST);
         }
 
@@ -104,18 +104,17 @@ public class LoginService {
     }
 
     // login
-    public ResponseEntity<?> login(LoginDto dto){
+    public ResponseEntity<?> login(LoginDto dto) {
 
         String userEmail = dto.getUserEmail();
         String userPassword = dto.getUserPassword();
 
-        try{
-
+        try {
             Users users = loginRepository.findByUserEmail(userEmail);
 
-            if(users == null) // DB에서 없어서 조회 불가능
+            if (users == null) // DB에서 없어서 조회 불가능
                 return response.fail("해당 유저는 존재하지 않는 유저입니다.", HttpStatus.BAD_REQUEST);
-            else{ // 이 경우에 아이디가 DB에 존재
+            else { // 이 경우에 아이디가 DB에 존재
 
                 // 1. Login ID / PW 기반으로 Authentication 객체를 생성합니다.
                 // authentication는 인증 여부를 확인하는 authenticated 값이 false입니다.
@@ -131,7 +130,7 @@ public class LoginService {
 
                 Token token = tokenRepository.findByAuthName(userEmail);
                 // 로그인 후 로그아웃 후 정상 접속
-                if(token == null){
+                if (token == null) {
                     // 4. Token 테이블에 RefreshToken 내용 저장
                     tokenRepository.save(
                             Token.builder()
@@ -141,7 +140,7 @@ public class LoginService {
                                     .build());
                 }
                 // 로그인 후 로그아웃 처리가 제대로 안됐을 때 값 duplicate되는 것 방지
-                else{
+                else {
                     token.setRefreshToken(tokenInfo.getRefreshToken());
                     token.setRefreshTokenExpirationTime(tokenInfo.getAccessTokenExpiresIn());
                     tokenRepository.save(token);
@@ -150,15 +149,15 @@ public class LoginService {
                 return response.success(tokenInfo, "로그인에 성공했습니다.", HttpStatus.OK);
 
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             return response.fail("데이터 베이스 오류입니다.", HttpStatus.BAD_REQUEST);
         }
     }
 
-    public ResponseEntity<?> reissue(Reissue reissue){
+    public ResponseEntity<?> reissue(Reissue reissue) {
 
         // 1. Refresh Token 검증
-        if(!jwtTokenProvider.validateToken(reissue.getRefreshToken())){
+        if (!jwtTokenProvider.validateToken(reissue.getRefreshToken())) {
             return response.fail("Refresh Token 정보가 유효하지 않습니다.", HttpStatus.BAD_REQUEST);
         }
 
@@ -193,9 +192,9 @@ public class LoginService {
 
         // 3. 해당 User email 로 저장된 Refresh Token 이 있는지 여부를 확인 후 있을 경우 삭제합니다.
         Token token = tokenRepository.findByAuthName(authentication.getName());
-        if(token != null)
-           // Refresh Token DB에서 삭제
-           tokenRepository.deleteById(token.getId());
+        if (token != null)
+            // Refresh Token DB에서 삭제
+            tokenRepository.deleteById(token.getId());
 
         return response.success("로그아웃 되었습니다.");
     }

@@ -24,7 +24,7 @@ public class CustomUserDetailService implements UserDetailsService {
         if(users == null)
             throw new UsernameNotFoundException("계정을 찾지 못했습니다.");
 
-        return loginRepository.findByUserEmail(userEmail);
+        return (UserDetails) loginRepository.findByUserEmail(userEmail);
     }
 
     // 해당하는 User의 데이터가 존재하면 UserDetials 객체로 만들어서 리턴

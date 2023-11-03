@@ -1,19 +1,18 @@
 package com.example.demo.entity.Union;
 
-import com.example.demo.entity.enums.UnionTagType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.example.demo.entity.enums.TagType;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Data
-@Builder
-@Entity // Entity 테이블 표시
+@Getter
+@Setter
 @AllArgsConstructor // constructor 생성
 @NoArgsConstructor // getter, setter 생성
+@ToString(exclude = {"unions"})
+@Entity // Entity 테이블 표시
+@Builder
 public class UnionTag {
     @Id
     @GeneratedValue
@@ -29,5 +28,5 @@ public class UnionTag {
     // 이 경우에 요청 사항이 늘어나면 이게 매우 유리함.
     @Enumerated(EnumType.STRING)
     @NotNull
-    private UnionTagType unionTag;
+    private TagType unionTag;
 }

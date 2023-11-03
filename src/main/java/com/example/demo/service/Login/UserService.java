@@ -4,7 +4,6 @@ import com.example.demo.dto.Login.LoginDto;
 import com.example.demo.dto.Response;
 import com.example.demo.dto.UserDto;
 import com.example.demo.dto.UserTagDto;
-import com.example.demo.entity.*;
 import com.example.demo.entity.User.UserTag;
 import com.example.demo.entity.User.Users;
 import com.example.demo.jwt.JwtTokenProvider;
@@ -44,7 +43,7 @@ public class UserService {
 
         // 화면용 정보 중 enum 타입들 string 변환
         String userGender = users.getUserGender().toString();
-        String userSchool = users.getUserSchool().toString();
+        String userCampus = users.getUserCampus().toString();
 
         // Tag들 string 목록으로 변환
         List<String> userTags = new ArrayList<>();
@@ -58,9 +57,9 @@ public class UserService {
                 .userName(users.getUserNames())
                 .userGender(userGender)
                 .userAge(users.getUserAge())
-                .userPhoneNumber(users.getUserPhonenumber())
+                .userPhoneNumber(users.getUserPhone())
                 .userEmail(users.getUserEmail())
-                .userSchool(userSchool)
+                .userCampus(userCampus)
                 .userTags(userTags).build();
 
         return response.success(userDto, "성공했습니다.", HttpStatus.OK);
