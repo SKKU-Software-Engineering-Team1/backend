@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.jwt.JwtTokenProvider;
-import com.example.demo.service.LoginService;
-import com.example.demo.service.UserService;
+import com.example.demo.service.Login.LoginService;
+import com.example.demo.service.Login.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,19 +17,12 @@ public class UserInfoController {
     final UserService userService;
 
     @PostMapping("/UserInfo/userInfo")
-    public ResponseEntity<?> UserInfo(@RequestHeader("Authorization") String accessToken) {
-        System.out.println("here " + accessToken);
+    public ResponseEntity<?> UserInfo(@RequestHeader("Authorization") String accessToken){
         return userService.getUserInfomation(accessToken);
     }
 
-//    @GetMapping("/UserInfo/userShotInfo/{userEmail}")
-//    public Response<?> UserShortInfo(@PathVariable String userEmail){
-//        LoginDto loginDto = LoginDto.builder()
-//                .userEmail(userEmail)
-//                .userPassword("")
-//                .build();
-//
-//        Response<?> result = userService.getUserTagInfomation(loginDto);
-//        return result;
-//    }
+    @PostMapping("/UserInfo/userShortInfo")
+    public ResponseEntity<?> UserShortInfo(@RequestHeader("Authorization") String accessToken){
+        return userService.getUserTagInfomation(accessToken);
+    }
 }

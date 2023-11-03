@@ -6,12 +6,10 @@ import com.example.demo.entity.User.Users;
 import com.example.demo.entity.enums.GenderType;
 import com.example.demo.service.LoginService;
 import com.example.demo.service.UserService;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.persistence.EntityManager;
@@ -34,13 +32,11 @@ public class userRepositoryTest {
 
     @Autowired EntityManager em;
 
-
     // 멤버 넣고 전체 조회
     @Test
     void findAllFromUser(){
         // 멤버 객체 생성 부분
         Users user = Users.builder()
-
                 .userEmail("qwer@qwer")
                 .userPassword("qwer")
                 .userGender(GenderType.MALE)
@@ -51,9 +47,8 @@ public class userRepositoryTest {
                 .userPassword("qwer")
                 .userGender(GenderType.MALE)
                 .build();
-      
-        Users users3 = Users.builder()
 
+        Users users3 = Users.builder()
                 .userEmail("qwer2@qwer")
                 .userPassword("qwer")
                 .userGender(GenderType.MALE)
@@ -64,7 +59,6 @@ public class userRepositoryTest {
         loginRepository.save(user);
         loginRepository.save(users2);
         loginRepository.save(users3);
-
 
         // 이거 딱 돌려보면 어? insert 쿼리도 안날라가고 select query도 안날라가네?
         // DB에서 가져와야하는데? 이게 정상입니다.

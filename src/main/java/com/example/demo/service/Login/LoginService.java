@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.Login;
 
 import com.example.demo.dto.Login.*;
 import com.example.demo.dto.Response;
@@ -72,7 +72,7 @@ public class LoginService {
                 Users users = Users.builder()
                         .userEmail(userEmail)
                         .userPassword(passwordEncoder.encode(userPassword))
-                        .userName(userName)
+                        .userNames(userName)
                         .userGender(genderType)
                         .userAge(userAge)
                         .userCampus(campType)
@@ -195,9 +195,6 @@ public class LoginService {
         if (token != null)
             // Refresh Token DB에서 삭제
             tokenRepository.deleteById(token.getId());
-
-        // 4. 해당 Access Token 유효시간 가지고 와서 BlackList 로 저장하기
-        Long expiration = jwtTokenProvider.getExpiration(logout.getAccessToken());
 
         return response.success("로그아웃 되었습니다.");
     }
