@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.Login;
 
 import com.example.demo.dto.Login.LoginDto;
 import com.example.demo.dto.Response;
@@ -31,15 +31,13 @@ public class UserService {
     final JwtTokenProvider jwtTokenProvider;
 
 //     User 정보 전체 가져오기
-//     TEXT Description이 필요한 건가요?? 2023/10/28 백명규
     public ResponseEntity<?> getUserInfomation(String AccessToken){
 
-        System.out.println(AccessToken);
         // 1. Access Token 에서 User email 을 가져옵니다.
         Authentication authentication = jwtTokenProvider.getAuthentication(AccessToken);
 
         // 2. fetch join 단일 user join 해오는 거는 좀 있다가 할게요 일단은 LAZY로 만듭니다.
-        final Users users = loginRepository.findByUserEmail(authentication.getName());
+        final Users users = loginRepository.findUserWithUserTags(authentication.getName());
 
         if(users == null || !jwtTokenProvider.validateToken(AccessToken))
             return response.fail("유효하지 않은 AccessToken입니다", HttpStatus.BAD_REQUEST);
@@ -57,7 +55,7 @@ public class UserService {
         }
 
         UserDto userDto = UserDto.builder()
-                .userName(users.getUsername())
+                .userName(users.getUserNames())
                 .userGender(userGender)
                 .userAge(users.getUserAge())
                 .userPhoneNumber(users.getUserPhonenumber())
@@ -69,12 +67,17 @@ public class UserService {
     }
 
     // User 관심사 정보만 가져오기
-    public ResponseEntity<?> getUserTagInfomation(LoginDto dto){
+    public ResponseEntity<?> getUserTagInfomation(String AccessToken){
 
-        String userEmail = dto.getUserEmail();
+        // 1. Access Token 에서 User email 을 가져옵니다.
+        Authentication authentication = jwtTokenProvider.getAuthentication(AccessToken);
 
-        // fetch join 단일 user join 해오는 거는 좀 있다가 하죠.
-        final Users users = loginRepository.findByUserEmail(userEmail);
+        // 2. fetch join으로 데이터를 가지고 옵니다.
+        final Users users = loginRepository.findUserWithUserTags(authentication.getName());
+
+        // 3. 정상 토크인지 검증.
+        if(users == null || !jwtTokenProvider.validateToken(AccessToken))
+            return response.fail("유효하지 않은 AccessToken입니다", HttpStatus.BAD_REQUEST);
 
         // Tag들 string 목록으로 변환
         List<String> userTags = new ArrayList<>();
@@ -85,10 +88,11 @@ public class UserService {
         }
 
         UserTagDto userTagDto = UserTagDto.builder()
-                .userName(users.getUsername())
+                .userName(users.getUserNames())
                 .userTags(userTags).build();
 
-//        System.out.println(userTagDto);
-        return response.success("일단 성공으로 놔둠");
+        return response.success(userTagDto, "성공했습니다.", HttpStatus.OK);
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.demo.entity.Union;
 
 import com.example.demo.entity.enums.UnionCategoryType;
 import com.example.demo.entity.enums.UnionSubType;

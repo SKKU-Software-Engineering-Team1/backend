@@ -13,6 +13,5 @@ import java.util.List;
 public class UserTagDto {
 
     String userName;
-
     List<String> userTags;
 }

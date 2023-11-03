@@ -37,8 +37,7 @@ public class Users implements UserDetails {
     @NotNull
     private String userPassword; // DB 내부 user_password로 변경
 
-
-    private String userName; // DB 내부 user_name으로 변경
+    private String userNames; // DB 내부 user_name으로 변경
 
     // 이거 어디에는 있고 어디에는 없어서 그냥 일단 넣었습니다. 2023/10/28 백명규
     private String userPhonenumber;
