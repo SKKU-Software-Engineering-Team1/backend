@@ -81,6 +81,13 @@ public class userRepositoryTest {
          Assertions.assertThat(users).hasSize(3);
     }
 
+
+    @Autowired
+    ArticleRepository articleRepository;
+    @Test
+    void 아티클레포지토리_확인(){
+
+    }
     // Email로 데이터 가져오는 방법
     @Test
     void findAllMemberWithEmail(){
