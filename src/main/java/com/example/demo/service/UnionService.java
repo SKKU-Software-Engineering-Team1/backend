@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.ResponseDto;
+import com.example.demo.dto.Login.UserResponseDto;
 
 import com.example.demo.dto.UniResponseDto;
 import com.example.demo.dto.UnionDto;
