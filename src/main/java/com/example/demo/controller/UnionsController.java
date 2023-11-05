@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/uni")
+@RequestMapping("/api")
 public class UnionsController {
 
     @Autowired
