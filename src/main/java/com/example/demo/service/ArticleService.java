@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.dto.ArtResponseDto;
 import com.example.demo.dto.UniResponseDto;
+import com.example.demo.entity.Board.Board;
 import com.example.demo.entity.Union.Unions;
 import com.example.demo.repository.ArticleRepository;
 import com.example.demo.repository.UnionRepository;
@@ -22,7 +23,7 @@ public class ArticleService {
 ////        String uniName = dto.getUnionName();
 //
 //        // email이 DB 내부에 있는지만 확인
-        List<Unions> aritcleList= articleRepository.findAll();
+        List<Board> aritcleList= articleRepository.findAll();
 //
 //        if(uni == null){
 //            System.out.println("it is not existed");
