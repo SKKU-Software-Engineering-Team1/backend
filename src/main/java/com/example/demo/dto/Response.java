@@ -11,24 +11,22 @@ import org.springframework.stereotype.Component;
 import java.util.Collections;
 
 @Data
-@AllArgsConstructor(staticName="set")
+@AllArgsConstructor(staticName = "set")
 @Component
 public class Response {
 
     @Getter
     @Builder
-    private static class Body{
-
+    private static class Body {
         private int state;
         private String result;
         private String message;
         private Object data;
         private Object error;
-
     }
 
     //spring security에서 제공하는 응답형식 기본 템플릿이 있더라구요. 해당 부분으로 변경하려고 합니다.
-    public ResponseEntity<?> success(Object data, String msg, HttpStatus status){
+    public ResponseEntity<?> success(Object data, String msg, HttpStatus status) {
         Body body = Body.builder()
                 .state(status.value())
                 .data(data)
@@ -56,7 +54,7 @@ public class Response {
      * @return 응답 객체
      */
 
-    public ResponseEntity<?> success(String msg){ // 잘 이해가 안되시면 오버로딩에 대해서 알아보시길 바랍니다.
+    public ResponseEntity<?> success(String msg) { // 잘 이해가 안되시면 오버로딩에 대해서 알아보시길 바랍니다.
         return success(Collections.emptyList(), msg, HttpStatus.OK);
     }
 
@@ -76,7 +74,7 @@ public class Response {
      * @return 응답 객체
      */
 
-    public ResponseEntity<?> success(Object data){
+    public ResponseEntity<?> success(Object data) {
         return success(data, null, HttpStatus.OK);
     }
 
@@ -94,11 +92,11 @@ public class Response {
      *
      * @return 응답 객체
      */
-    public ResponseEntity<?> success(){
+    public ResponseEntity<?> success() {
         return success(Collections.emptyList(), null, HttpStatus.OK);
     }
 
-    public ResponseEntity<?> fail(Object data, String msg, HttpStatus status){
+    public ResponseEntity<?> fail(Object data, String msg, HttpStatus status) {
         Body body = Body.builder()
                 .state(status.value())
                 .data(data)
@@ -121,11 +119,11 @@ public class Response {
      *     }
      * </pre>
      *
-     * @param msg 응답 바디 message 필드에 포함될 정보
+     * @param msg    응답 바디 message 필드에 포함될 정보
      * @param status 응답 바디 status 필드에 포함될 상태 코드
      * @return 응답 객체
      */
-    public ResponseEntity<?> fail(String msg, HttpStatus status){
+    public ResponseEntity<?> fail(String msg, HttpStatus status) {
         return fail(Collections.emptyList(), msg, status);
     }
 

@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.RecruitingUserDto;
-import com.example.demo.dto.ResponseDto;
+import com.example.demo.dto.Response;
 import com.example.demo.entity.Union.UnionTag;
 import com.example.demo.entity.Union.Unions;
 import com.example.demo.entity.User.Users;
@@ -10,6 +10,8 @@ import com.example.demo.entity.enums.TagType;
 import com.example.demo.repository.LoginRepository;
 import com.example.demo.repository.UnionsRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,18 +23,19 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class RecruitService {
 
-    private final UnionsRepository unionsRepository;
-    private final LoginRepository loginRepository;
+    final UnionsRepository unionsRepository;
+    final LoginRepository loginRepository;
 
-    public ResponseDto<List<RecruitingUserDto>> getUserList(Long union_id) {
+    final Response response;
+
+    public ResponseEntity<?> getUserList(Long union_id) {
         try {
-//            List<Unions> union = unionsRepository.findAllUnionTags();
+            System.out.println(union_id);
             Optional<Unions> union = unionsRepository.findById(union_id);
-//            System.out.println(union);
 
             if (union.isEmpty()) {
                 System.out.println("it is not existed");
-                return ResponseDto.setFailed("Union not found");
+                return response.fail("Union not found", HttpStatus.NOT_FOUND);
             }
 
             Unions unions = union.get();
@@ -40,11 +43,8 @@ public class RecruitService {
             List<TagType> tags = list.stream()
                     .map(UnionTag::getUnionTag) // Player 객체를 이름(String)으로 매핑
                     .collect(Collectors.toList()); // 이름들을 리스트로 수집
-
-//            loginRepository.findAllUserTags();
             List<Users> users = loginRepository.findAllUserTags();
             System.out.println("RecruitService.getUserList");
-//            System.out.println(users);
             List<RecruitingUserDto> result = new ArrayList<>();
             for (Users user : users) {
                 List<TagType> userTags = user.getUserTags().stream()
@@ -62,21 +62,21 @@ public class RecruitService {
             }
             System.out.println(result);
 
-            return ResponseDto.setSuccess("User List", result);
+            return response.success(result, "User List", HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return ResponseDto.setFailed("INTERNAL_SERVER_ERROR");
+            return response.fail("INTERNAL_SERVER_ERROR", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    public ResponseDto<RecruitingUserDto> getUser(Long user_id) {
+    public ResponseEntity<?> getUser(Long user_id) {
         try {
             Optional<Users> user = loginRepository.findById(user_id);
 
             System.out.println("here!!");
             if (user.isEmpty()) {
                 System.out.println("it is not existed");
-                return ResponseDto.setFailed("User not found");
+                return response.fail("User not found", HttpStatus.NO_CONTENT);
             }
             Users real = user.get();
             List<TagType> userTags = real.getUserTags().stream()
@@ -84,10 +84,10 @@ public class RecruitService {
                     .collect(Collectors.toList()); // 이름들을 리스트로 수집
 
             RecruitingUserDto result = new RecruitingUserDto(real.getId(), real.getUsername(), real.getUserGender(), real.getUserAge(), real.getUserPhone(), real.getUserEmail(), real.getUserCampus(), real.getUserIntroduction(), userTags);
-            return ResponseDto.setSuccess("Union List", result);
+            return response.success(result, "Union List", HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return ResponseDto.setFailed("INTERNAL_SERVER_ERROR");
+            return response.fail("INTERNAL_SERVER_ERROR", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

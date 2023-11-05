@@ -6,11 +6,13 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Data
-@Builder
-@Entity // Entity 테이블 표시
+@Getter
+@Setter
 @AllArgsConstructor // constructor 생성
 @NoArgsConstructor // getter, setter 생성
+@ToString(exclude = {"unions"})
+@Entity // Entity 테이블 표시
+@Builder
 public class UnionTag {
     @Id
     @GeneratedValue

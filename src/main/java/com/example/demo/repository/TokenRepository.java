@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface TokenRepository extends JpaRepository<Token, Long> {
     public Token findByRefreshToken(String RefreshToken);
     public Token findByAuthName(String AuthName);
-
     public boolean existsByAuthName(String AuthName);
 
 }
