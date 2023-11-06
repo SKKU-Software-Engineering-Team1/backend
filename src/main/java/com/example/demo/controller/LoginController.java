@@ -2,7 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.Login.LoginDto;
 import com.example.demo.dto.Login.Logout;
-import com.example.demo.dto.Login.Reissue;
+import com.example.demo.dto.Login.TokenDto;
 import com.example.demo.dto.Login.SignUpDto;
 import com.example.demo.jwt.JwtTokenProvider;
 import com.example.demo.service.Login.LoginService;
@@ -25,14 +25,19 @@ public class LoginController {
         return loginService.signUp(requestBody);
     }
 
+    @PostMapping("/signUpAdmin")
+    public ResponseEntity<?> signUpAdmin(@RequestBody SignUpDto requestBody) {
+        return loginService.signUpAdmin(requestBody);
+    }
+
     @PostMapping("/login")
     public ResponseEntity<?> logIn(@RequestBody LoginDto loginDto) {
         return loginService.login(loginDto);
     }
 
     @PostMapping("/reissue")
-    public ResponseEntity<?> reissue(@RequestBody Reissue reissue) {
-        return loginService.reissue(reissue);
+    public ResponseEntity<?> reissue(@RequestBody TokenDto tokenDto) {
+        return loginService.reissue(tokenDto);
     }
 
     @PostMapping("/logout")
