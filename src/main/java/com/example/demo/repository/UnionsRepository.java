@@ -15,4 +15,7 @@ public interface UnionsRepository extends JpaRepository<Unions, Long> {
 
     @Query("select u from Unions u join fetch u.unionTags where u.Id = :union_id")
     Optional<Unions> findById(Long union_id);
+
+    @Query("select u from Unions u where u.Id = :unionId")
+    Optional<Unions> findUnionsById(Long unionId);
 }
