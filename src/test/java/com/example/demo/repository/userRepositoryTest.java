@@ -4,6 +4,9 @@ import com.example.demo.dto.Login.LoginDto;
 import com.example.demo.dto.Login.SignUpDto;
 import com.example.demo.entity.User.Users;
 import com.example.demo.entity.enums.GenderType;
+import com.example.demo.service.Login.LoginService;
+import com.example.demo.service.Login.UserService;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
