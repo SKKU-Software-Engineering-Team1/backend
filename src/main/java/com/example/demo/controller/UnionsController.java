@@ -17,8 +17,7 @@ public class UnionsController {
     @GetMapping("/getId")
     public ResponseEntity<?> getParameter(@RequestParam(value = "Id")Long uniId)
     {
-        System.out.println(uniId.getClass().getName());
-        System.out.println(uniId);
+
         return unionService.getUnionInfo(uniId);
     }
 

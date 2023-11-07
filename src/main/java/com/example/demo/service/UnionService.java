@@ -52,10 +52,9 @@ public class UnionService {
             Optional<Unions> uni = unionsRepository.findUnionsById(unionId);
 
 
-            System.out.println("here!!");
             if (uni.isEmpty()) {
                 System.out.println("it is not existed");
-                return response.fail("User not found", HttpStatus.NO_CONTENT);
+                return response.fail("Union not found", HttpStatus.NO_CONTENT);
             }
             Unions uni_info = uni.get();
 
