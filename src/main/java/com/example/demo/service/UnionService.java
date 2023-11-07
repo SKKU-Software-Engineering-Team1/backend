@@ -47,9 +47,9 @@ public class UnionService {
 //
 //        return UniResponseDto.setSuccess("Success", uni);
 //    }
-    public ResponseEntity<?> getUnionInfo(String unionName){
+    public ResponseEntity<?> getUnionInfo(Long unionId){
         try {
-            Optional<Unions> uni = unionsRepository.findFirstByUnionName(unionName);
+            Optional<Unions> uni = unionsRepository.findUnionsById(unionId);
 
 
             System.out.println("here!!");

@@ -14,10 +14,12 @@ public class UnionsController {
     UnionService unionService;
 
 
-    @GetMapping("/getName")
-    public ResponseEntity<?> getParameter(@RequestParam(value = "name")String uniName)
+    @GetMapping("/getId")
+    public ResponseEntity<?> getParameter(@RequestParam(value = "Id")Long uniId)
     {
-        return unionService.getUnionInfo(uniName);
+        System.out.println(uniId.getClass().getName());
+        System.out.println(uniId);
+        return unionService.getUnionInfo(uniId);
     }
 
 
