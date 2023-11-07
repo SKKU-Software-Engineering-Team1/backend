@@ -68,9 +68,9 @@ public class Unions {
     @Builder.Default
     private List<UnionTag> unionTags = new ArrayList<>();
 
-    @OneToMany(mappedBy = "unions")
-    @Builder.Default
-    private List<UnionUser> unionUsers = new ArrayList<>();
+//    @OneToMany(mappedBy = "unions")
+//    @Builder.Default
+//    private List<UnionUser> unionUsers = new ArrayList<>();
 
 
 }
