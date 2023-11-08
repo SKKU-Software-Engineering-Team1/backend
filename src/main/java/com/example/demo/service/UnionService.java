@@ -6,17 +6,20 @@ import com.example.demo.dto.Login.UserResponseDto;
 
 import com.example.demo.entity.Union.UnionTag;
 import com.example.demo.entity.Union.UnionUser;
+import com.example.demo.dto.Response;
+import com.example.demo.dto.UnionsDto;
+import com.example.demo.entity.Union.UnionTag;
 import com.example.demo.entity.Union.Unions;
 import com.example.demo.entity.User.UserTag;
 import com.example.demo.entity.User.Users;
 import com.example.demo.entity.enums.*;
 import com.example.demo.jwt.JwtTokenProvider;
 import com.example.demo.repository.LoginRepository;
-import com.example.demo.repository.UnionRepository;
+import com.example.demo.repository.UnionTagRepository;
 import com.example.demo.repository.UnionsRepository;
 import com.example.demo.repository.UserTagRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -28,18 +31,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class UnionService {
 
-
     final UnionsRepository unionsRepository;
+    final UnionTagRepository unionTagRepository;
+    final LoginRepository loginRepository;
     final Response response;
-
-    final EntityManager em;
-    final JwtTokenProvider jwtTokenProvider;
 //    public UniResponseDto<?> getUnionInfo(String uniName){
 //
 ////        String uniName = dto.getUnionName();
@@ -76,10 +76,36 @@ public class UnionService {
 
 
     }
+
+    public ResponseEntity<?> editUnionInfo(UnionsDto dto) {
+        try {
+            Unions target = unionsRepository.findById(dto.getUnions_id()).orElse(null);
+            if (target == null) {
+                return response.fail("해당 동아리 id가 없습니다.", HttpStatus.BAD_REQUEST);
+            }
+            Unions unionEntity = dto.toEntity(target);
+
+            // union의 모든 기존 tag 정보 삭제
+            List<UnionTag> beforeUnionTag = target.getUnionTags();
+            System.out.println(beforeUnionTag);
+            unionTagRepository.deleteAll(beforeUnionTag);
+
+            // union의 새로운 tag 정보 추가
+            List<UnionTag> afterUnionTag = unionEntity.getUnionTags();
+            unionTagRepository.saveAll(afterUnionTag);
+
+            unionsRepository.save(unionEntity);
+            return response.success("동아리 정보 변경 성공");
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return response.fail("INTERNAL_SERVER_ERROR", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     public ResponseEntity<?> regUnion(UnionsDto dto) {
 
 
-        Long unionId = dto.getId();
+        Long unionId = dto.getUnions_id();
         String unionName = dto.getUnionName();
         UnionCategoryType unionCategory = dto.getUnionCategory();
         String unionIntroduction = dto.getUnionIntroduction();
@@ -95,22 +121,7 @@ public class UnionService {
         String unionContactMail = dto.getUnionContactMail();
         String unionYears = dto.getUnionYears();
         List<UnionTag> unionTags = dto.getUnionTags();
-        List<UnionUser> unionUsers = dto.getUnionUsers();
-//
-//        // 1. Access Token 에서 User email 을 가져옵니다.
-//        Authentication authentication = jwtTokenProvider.getAuthentication(accessToken);
-//
-//        // 2. fetch join으로 데이터를 가지고 옵니다.
-//        final Unions uni = UnionsRepository.findUserWithUserTags(authentication.getName());
-//
-//        users.setUserEmail(userEmail);
-//        users.setUserPassword(userPassword);
-//        users.setUserPhone(userPhoneNumber);
-//
-//        users.setUserAge(userAge);
-//        users.setUserNames(userName);
-//        users.setUserGender(genderType);
-//        users.setUserCampus(campType);
+
         // Name이 DB 내부에 있는지만 확인
 //        final boolean unionExist = UnionsRepository.existsByUnionName(unionName);
         final boolean unionExist = false;
@@ -120,23 +131,7 @@ public class UnionService {
             try {
 
 
-//        private Long Id;
-//        private String unionName;
-//        private UnionCategoryType unionCategory;
-//        private String unionIntroduction;
-//        private String unionRecruit;
-//        private LocalDate unionRecruitDateStart;
-//        private LocalDate unionRecruitDateEnd;
-//        private boolean unionSkkuYn = false;
-//        private UnionSubType unionSkkuSub;
-//        private String unionDues;
-//        private String unionContactPhone;
-//        private String unionKakao;
-//        private String unionSns;
-//        private String unionContactMail;
-//        private String unionYears;
-//        private List<UnionTag> unionTags = new ArrayList<>();
-//        private List<UnionUser> unionUsers = new ArrayList<>();
+
                 Unions uni = Unions.builder()
                         .Id(unionId)
                         .unionName(unionName)
@@ -154,7 +149,6 @@ public class UnionService {
                         .unionContactMail(unionContactMail)
                         .unionYears(unionYears)
                         .unionTags(unionTags)
-                        .unionUsers(unionUsers)
                         .build();
 
 

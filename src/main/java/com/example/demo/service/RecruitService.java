@@ -30,7 +30,6 @@ public class RecruitService {
 
     public ResponseEntity<?> getUserList(Long union_id) {
         try {
-            System.out.println(union_id);
             Optional<Unions> union = unionsRepository.findById(union_id);
 
             if (union.isEmpty()) {
@@ -40,28 +39,22 @@ public class RecruitService {
 
             Unions unions = union.get();
             List<UnionTag> list = unions.getUnionTags();
-            List<TagType> tags = list.stream()
-                    .map(UnionTag::getUnionTag) // Player 객체를 이름(String)으로 매핑
-                    .collect(Collectors.toList()); // 이름들을 리스트로 수집
+            List<TagType> tags = list.stream().map(UnionTag::getUnionTag).collect(Collectors.toList()); // 이름들을 리스트로 수집
+
             List<Users> users = loginRepository.findAllUserTags();
-            System.out.println("RecruitService.getUserList");
             List<RecruitingUserDto> result = new ArrayList<>();
             for (Users user : users) {
-                List<TagType> userTags = user.getUserTags().stream()
-                        .map(UserTag::getUserTag) // Player 객체를 이름(String)으로 매핑
-                        .collect(Collectors.toList()); // 이름들을 리스트로 수집
+                List<TagType> userTags = user.getUserTags().stream().map(UserTag::getUserTag).collect(Collectors.toList()); // 이름들을 리스트로 수집
                 for (TagType tag : tags) {
                     if (userTags.contains(tag)) {
                         RecruitingUserDto data = new RecruitingUserDto(user.getId(), user.getUsername(), user.getUserGender(), user.getUserAge(), user.getUserPhone(), user.getUserEmail(), user.getUserCampus(), user.getUserIntroduction(), userTags);
-                        result.add(data);
-                        System.out.println("ADD");
-                        System.out.println(user);
+                        if (!result.contains(data)) {
+                            result.add(data);
+                        }
                         break;
                     }
                 }
             }
-            System.out.println(result);
-
             return response.success(result, "User List", HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -73,7 +66,6 @@ public class RecruitService {
         try {
             Optional<Users> user = loginRepository.findById(user_id);
 
-            System.out.println("here!!");
             if (user.isEmpty()) {
                 System.out.println("it is not existed");
                 return response.fail("User not found", HttpStatus.NO_CONTENT);
