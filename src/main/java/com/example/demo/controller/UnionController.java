@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/union")
 @RequiredArgsConstructor
+@CrossOrigin(origins="*")
 public class UnionController {
 
     final JwtTokenProvider jwtTokenProvider;
