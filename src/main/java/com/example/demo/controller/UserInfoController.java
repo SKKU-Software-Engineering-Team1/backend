@@ -15,6 +15,7 @@ import java.util.Date;
 @RestController
 @RequestMapping("/api/UserInfo")
 @RequiredArgsConstructor
+@CrossOrigin(origins="*")
 public class UserInfoController {
 
     final JwtTokenProvider jwtTokenProvider;
