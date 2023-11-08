@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/chat")
 @RequiredArgsConstructor
+@CrossOrigin(origins="*")
 public class ChatController {
     final ChatService chatService;
     final JwtTokenProvider jwtTokenProvider;
@@ -73,10 +74,11 @@ public class ChatController {
         if(refreshToken == null){
 
             // AccessToken부터가 글러먹었으면 바로 에러를 줍니다.
-            if(!jwtTokenProvider.validateToken(accessToken))
+            if(!jwtTokenProvider.validateToken(accessToken)){
                 return tokenService.requestRefreshToken();
+            }
             else{
-                return chatService.findAllTextWithRoomId(accessToken); // 여기만 바꿔주세요
+                return chatService.findAllRoomWithUserEmail(accessToken); // 여기만 바꿔주세요
             }
         }
         else
