@@ -36,6 +36,7 @@ public class UnionsDto {
     private String unionRecruit;
     private LocalDate unionRecruitDateStart;
     private LocalDate unionRecruitDateEnd;
+    @Builder.Default
     private boolean unionSkkuYn = false;
     private UnionSubType unionSkkuSub;
     private String unionDues;
@@ -44,6 +45,7 @@ public class UnionsDto {
     private String unionSns;
     private String unionContactMail;
     private String unionYears;
+    @Builder.Default
     private List<UnionTag> unionTags = new ArrayList<>();
     private List<String> unionTagsString;
 
