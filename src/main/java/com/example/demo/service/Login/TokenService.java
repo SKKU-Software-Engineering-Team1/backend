@@ -1,9 +1,6 @@
 package com.example.demo.service.Login;
 
-import com.example.demo.dto.Login.TokenDto;
-import com.example.demo.dto.Login.UserResponseDto;
 import com.example.demo.dto.Response;
-import com.example.demo.entity.Token;
 import com.example.demo.jwt.JwtTokenProvider;
 import com.example.demo.repository.LoginRepository;
 import com.example.demo.repository.UserTagRepository;
@@ -14,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
+
 @Service
 @RequiredArgsConstructor
 public class TokenService {
@@ -24,11 +22,11 @@ public class TokenService {
     final Response response;
     final JwtTokenProvider jwtTokenProvider;
 
-    public ResponseEntity<?> requestRefreshToken(){
+    public ResponseEntity<?> requestRefreshToken() {
         return response.fail("AccessToken이 만료되었습니다.", HttpStatus.EXPECTATION_FAILED);
     }
 
-    public ResponseEntity<?> reissueAccessToken(String AccessToken, String RefreshToken){
+    public ResponseEntity<?> reissueAccessToken(String AccessToken, String RefreshToken) {
 
         // 1. Refresh Token 검증
         if (!jwtTokenProvider.validateToken(RefreshToken))
