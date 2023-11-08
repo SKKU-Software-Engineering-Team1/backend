@@ -18,4 +18,6 @@ public interface UnionsRepository extends JpaRepository<Unions, Long> {
 
     @Query("select u from Unions u where u.Id = :unionId")
     Optional<Unions> findUnionsById(Long unionId);
+
+    boolean existsByUnionName(String unionName);
 }
