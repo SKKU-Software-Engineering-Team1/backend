@@ -21,16 +21,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
+@CrossOrigin(origins="*")
 public class ArticleController {
 //    @Autowired
 
     final ArticleRepository articleRepository;
+    final ArticleService articleService;
 //    final JwtTokenProvider jwtTokenProvider;
 //    final UserService userService;
 //    final TokenService tokenService;
     @GetMapping("/getArticle")
-    public List<Board> getAllArticle(){
-        return articleRepository.findAll();
+    public ResponseEntity<?> getAllArticle(){
+        return articleService.getArticleList();
     }
 //    @PostMapping("/getArticle")
 //    public ResponseEntity<?> UserInfo(@RequestHeader("AccessToken") String accessToken

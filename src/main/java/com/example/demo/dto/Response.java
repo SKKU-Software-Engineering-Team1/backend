@@ -104,7 +104,7 @@ public class Response {
                 .message(msg)
                 .error(Collections.emptyList())
                 .build();
-        return ResponseEntity.ok(body);
+        return ResponseEntity.status(status).body(body);
     }
 
     /**
