@@ -1,6 +1,17 @@
 package com.example.demo.dto;
 
 import com.example.demo.entity.Union.UnionTag;
+import com.example.demo.entity.Union.UnionUser;
+import com.example.demo.entity.enums.UnionCategoryType;
+import com.example.demo.entity.enums.UnionSubType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import com.example.demo.entity.Union.Unions;
 import com.example.demo.entity.User.UserTag;
 import com.example.demo.entity.User.Users;
@@ -14,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class UnionsDto {
@@ -24,7 +36,8 @@ public class UnionsDto {
     private String unionRecruit;
     private LocalDate unionRecruitDateStart;
     private LocalDate unionRecruitDateEnd;
-    private boolean unionSkkuYn;
+    @Builder.Default
+    private boolean unionSkkuYn = false;
     private UnionSubType unionSkkuSub;
     private String unionDues;
     private String unionContactPhone;
@@ -32,6 +45,8 @@ public class UnionsDto {
     private String unionSns;
     private String unionContactMail;
     private String unionYears;
+    @Builder.Default
+    private List<UnionTag> unionTags = new ArrayList<>();
     private List<String> unionTagsString;
 
     public Unions toEntity(Unions union) {
