@@ -59,7 +59,7 @@ public class UserInfoController {
         }
     }
 
-    @PostMapping("/userDelete")
+    @DeleteMapping("/userDelete")
     public ResponseEntity<?> UserDelete(@RequestHeader("AccessToken") String accessToken
             , @RequestHeader(value = "RefreshToken", required = false) String refreshToken) {
 

@@ -14,14 +14,7 @@ import java.util.List;
 public class ModifyDto {
 
     private String userEmail;
-    private String userPassword;
-
-    private int userAge;
-    private String userName;
-    private String userGender;
-    private String userPhoneNumber;
-    private String userCampus;
-    private String userInformation;
+    private String userIntroduction;
 
     private List<String> userTags;
 }
