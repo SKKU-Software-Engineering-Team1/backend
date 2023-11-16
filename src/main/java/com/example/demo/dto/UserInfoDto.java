@@ -11,14 +11,12 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+public class UserInfoDto {
     String userName;
     String userGender;
     int userAge;
     String userPhoneNumber;
     String userEmail;
     String userCampus;
-    String userIntroduction;
-    String userRole;
     List<String> userTags;
 }
