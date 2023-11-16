@@ -21,6 +21,7 @@ public class ModifyDto {
     private String userGender;
     private String userPhoneNumber;
     private String userCampus;
+    private String userInformation;
 
     private List<String> userTags;
 }

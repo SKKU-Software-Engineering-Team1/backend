@@ -36,9 +36,10 @@ public class UserService {
 
 //     User 정보 전체 가져오기
     public ResponseEntity<?> getUserInformation(String AccessToken){
-
+        System.out.println(AccessToken);
         // 1. Access Token 에서 User email 을 가져옵니다.
         Authentication authentication = jwtTokenProvider.getAuthentication(AccessToken);
+        boolean isAdmin = authentication.getAuthorities().stream().anyMatch(o->o.getAuthority().equals("ROLE_ADMIN"));
 
         // 2. fetch join 단일 user join 해오는 거는 좀 있다가 할게요 일단은 LAZY로 만듭니다.
         final Users users = loginRepository.findUserWithUserTags(authentication.getName());
@@ -54,7 +55,6 @@ public class UserService {
         for(int i = 0; i < userTagList.size() ; i++){
             userTags.add(userTagList.get(i).getUserTag().toString());
         }
-
         UserDto userDto = UserDto.builder()
                 .userName(users.getUserNames())
                 .userGender(userGender)
@@ -64,7 +64,13 @@ public class UserService {
                 .userCampus(userCampus)
                 .userTags(userTags).build();
 
+        if(isAdmin)
+            userDto.setUserRole("ROLE_ADMIN");
+        else
+            userDto.setUserRole("ROLE_USER");
+
         return response.success(userDto, "성공했습니다.", HttpStatus.OK);
+
     }
 
     // User 관심사 정보만 가져오기
@@ -124,6 +130,7 @@ public class UserService {
         String userGender = dto.getUserGender();
         List<String> userTags = dto.getUserTags();
         String userCampus = dto.getUserCampus();
+        String userInformation = dto.getUserInformation();
 
         GenderType genderType = GenderType.getGender(userGender);
         CampusType campType = CampusType.getCampus(userCampus);
@@ -142,6 +149,7 @@ public class UserService {
         users.setUserNames(userName);
         users.setUserGender(genderType);
         users.setUserCampus(campType);
+        users.setUserIntroduction(userInformation);
 
         try{
             // user 정보 저장

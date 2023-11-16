@@ -77,19 +77,20 @@ public class LoginService {
                         .userAge(userAge)
                         .userCampus(campType)
                         .userPhone(userPhoneNumber)
-                        .roles(Collections.singletonList(Authority.USER.name()))
+                        .roles(Collections.singletonList(Authority.ROLE_USER.name()))
                         .build();
-
-                // user Tag 정보 저장용 Tags 생성
-                List<UserTag> userTagList = Users.makeUserTags(users, userTags);
 
                 // user 정보 저장
                 loginRepository.save(users);
 
-                // user Tag 정보도 DB에 저장
-                for (UserTag userTag : userTagList) {
-                    userTagRepository.save(userTag);
+                if (userTags != null) {
+                    // user Tag 정보 저장용 Tags 생성
+                    List<UserTag> userTagList = Users.makeUserTags(users, userTags);                // user Tag 정보도 DB에 저장
+                    for (UserTag userTag : userTagList) {
+                        userTagRepository.save(userTag);
+                    }
                 }
+
 
             } catch (Exception e) {
                 return response.fail("데이터 베이스 오류입니다.", HttpStatus.BAD_REQUEST);
@@ -135,18 +136,19 @@ public class LoginService {
                         .userAge(userAge)
                         .userCampus(campType)
                         .userPhone(userPhoneNumber)
-                        .roles(Collections.singletonList(Authority.USER.name()))
+                        .roles(Collections.singletonList(Authority.ROLE_ADMIN.name()))
                         .build();
 
-                // user Tag 정보 저장용 Tags 생성
-                List<UserTag> userTagList = Users.makeUserTags(users, userTags);
 
                 // user 정보 저장
                 loginRepository.save(users);
 
-                // user Tag 정보도 DB에 저장
-                for (UserTag userTag : userTagList) {
-                    userTagRepository.save(userTag);
+                if (userTags != null) {
+                    // user Tag 정보 저장용 Tags 생성
+                    List<UserTag> userTagList = Users.makeUserTags(users, userTags);                // user Tag 정보도 DB에 저장
+                    for (UserTag userTag : userTagList) {
+                        userTagRepository.save(userTag);
+                    }
                 }
 
             } catch (Exception e) {
@@ -268,7 +270,7 @@ public class LoginService {
 
 
         // add ROLE_ADMIN
-        user.getRoles().add(Authority.ADMIN.name());
+        user.getRoles().add(Authority.ROLE_ADMIN.name());
         loginRepository.save(user);
 
         return response.success();
