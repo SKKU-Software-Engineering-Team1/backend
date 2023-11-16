@@ -77,24 +77,84 @@ public class LoginService {
                         .userAge(userAge)
                         .userCampus(campType)
                         .userPhone(userPhoneNumber)
-                        .roles(Collections.singletonList(Authority.USER.name()))
+                        .roles(Collections.singletonList(Authority.ROLE_USER.name()))
                         .build();
-
-                // user Tag 정보 저장용 Tags 생성
-                List<UserTag> userTagList = Users.makeUserTags(users, userTags);
 
                 // user 정보 저장
                 loginRepository.save(users);
 
-                // user Tag 정보도 DB에 저장
-                for (UserTag userTag : userTagList) {
-                    System.out.println(userTag.getUserTag());
-                    userTagRepository.save(userTag);
+                if (userTags != null) {
+                    // user Tag 정보 저장용 Tags 생성
+                    List<UserTag> userTagList = Users.makeUserTags(users, userTags);                // user Tag 정보도 DB에 저장
+                    for (UserTag userTag : userTagList) {
+                        userTagRepository.save(userTag);
+                    }
+                }
+
+
+            } catch (Exception e) {
+                return response.fail("데이터 베이스 오류입니다.", HttpStatus.BAD_REQUEST);
+            }
+
+        } else {
+            return response.fail("이미 회원가입된 이메일입니다.", HttpStatus.BAD_REQUEST);
+        }
+
+        return response.success("회원가입에 성공했습니다.");
+    }
+
+    // SignUp 완료
+    public ResponseEntity<?> signUpAdmin(SignUpDto dto) {
+
+        String userEmail = dto.getUserEmail();
+        String userPassword = dto.getUserPassword();
+        String userPhoneNumber = dto.getUserPhoneNumber();
+
+        int userAge = dto.getUserAge();
+        String userName = dto.getUserName();
+        String userGender = dto.getUserGender();
+        List<String> userTags = dto.getUserTags();
+        String userCampus = dto.getUserCampus();
+
+
+        // email이 DB 내부에 있는지만 확인
+        final boolean userExist = loginRepository.existsByUserEmail(userEmail);
+
+        // 유저 없음 회원가입 가능!
+        if (!userExist) {
+
+            try {
+
+                GenderType genderType = GenderType.getGender(userGender);
+                CampusType campType = CampusType.getCampus(userCampus);
+
+                Users users = Users.builder()
+                        .userEmail(userEmail)
+                        .userPassword(passwordEncoder.encode(userPassword))
+                        .userNames(userName)
+                        .userGender(genderType)
+                        .userAge(userAge)
+                        .userCampus(campType)
+                        .userPhone(userPhoneNumber)
+                        .roles(Collections.singletonList(Authority.ROLE_ADMIN.name()))
+                        .build();
+
+
+                // user 정보 저장
+                loginRepository.save(users);
+
+                if (userTags != null) {
+                    // user Tag 정보 저장용 Tags 생성
+                    List<UserTag> userTagList = Users.makeUserTags(users, userTags);                // user Tag 정보도 DB에 저장
+                    for (UserTag userTag : userTagList) {
+                        userTagRepository.save(userTag);
+                    }
                 }
 
             } catch (Exception e) {
                 return response.fail("데이터 베이스 오류입니다.", HttpStatus.BAD_REQUEST);
             }
+
 
         } else {
             return response.fail("이미 회원가입된 이메일입니다.", HttpStatus.BAD_REQUEST);
@@ -154,15 +214,15 @@ public class LoginService {
         }
     }
 
-    public ResponseEntity<?> reissue(Reissue reissue) {
+    public ResponseEntity<?> reissue(TokenDto tokenDto) {
 
         // 1. Refresh Token 검증
-        if (!jwtTokenProvider.validateToken(reissue.getRefreshToken())) {
+        if (!jwtTokenProvider.validateToken(tokenDto.getRefreshToken())) {
             return response.fail("Refresh Token 정보가 유효하지 않습니다.", HttpStatus.BAD_REQUEST);
         }
 
         // 2. Access Token 에서 User email 을 가져옵니다.
-        Authentication authentication = jwtTokenProvider.getAuthentication(reissue.getAccessToken());
+        Authentication authentication = jwtTokenProvider.getAuthentication(tokenDto.getAccessToken());
 
         // 3. DB에서 Refresh Token 값 userEmail로 가져옴
         Token token = tokenRepository.findByAuthName(authentication.getName());
@@ -210,7 +270,7 @@ public class LoginService {
 
 
         // add ROLE_ADMIN
-        user.getRoles().add(Authority.ADMIN.name());
+        user.getRoles().add(Authority.ROLE_ADMIN.name());
         loginRepository.save(user);
 
         return response.success();

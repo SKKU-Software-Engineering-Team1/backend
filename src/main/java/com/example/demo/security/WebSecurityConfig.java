@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) //토큰 기반 인증 방식이라 세션 비활성화
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/**/**").permitAll() // login 관련은 인증이 필요없음
+                .antMatchers("/**").permitAll() // 일단 모든 건 인증이 필요없음
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
                         UsernamePasswordAuthenticationFilter.class);
