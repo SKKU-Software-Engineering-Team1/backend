@@ -46,7 +46,7 @@ public class UnionsDto {
     private String unionContactMail;
     private String unionYears;
     @Builder.Default
-    private List<UnionTag> unionTags = new ArrayList<>();
+    private List<TagType> unionTags = new ArrayList<>();
     private List<String> unionTagsString;
 
     public Unions toEntity(Unions union) {

@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -59,7 +60,7 @@ public class UnionService {
 //    }
     public ResponseEntity<?> getUnionInfo(Long unionId){
         try {
-            Optional<Unions> uni = unionsRepository.findUnionsById(unionId);
+            Optional<Unions> uni = unionsRepository.findById(unionId);
 
 
             if (uni.isEmpty()) {
@@ -67,8 +68,14 @@ public class UnionService {
                 return response.fail("Union not found", HttpStatus.NO_CONTENT);
             }
             Unions uni_info = uni.get();
-
-            return response.success(uni_info, "Union", HttpStatus.OK);
+            List<UnionTag> list = uni_info.getUnionTags();
+            List<TagType> tags = list.stream()
+                    .map(UnionTag::getUnionTag) // Player 객체를 이름(String)으로 매핑
+                    .collect(Collectors.toList()); // 이름들을 리스트로 수집
+            List<String> temp = new ArrayList<>();
+            temp.add("1");
+            UnionsDto data = new UnionsDto(uni_info.getId(), uni_info.getUnionName(), uni_info.getUnionCategory(), uni_info.getUnionIntroduction(), uni_info.getUnionRecruit(),uni_info.getUnionRecruitDateStart(),uni_info.getUnionRecruitDateEnd(), false,uni_info.getUnionSkkuSub(), uni_info.getUnionDues(),uni_info.getUnionContactPhone(), uni_info.getUnionKakao(),uni_info.getUnionSns(),uni_info.getUnionContactMail(),uni_info.getUnionYears(),tags,temp);
+            return response.success(data, "Union", HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return response.fail("INTERNAL_SERVER_ERROR", HttpStatus.INTERNAL_SERVER_ERROR);
