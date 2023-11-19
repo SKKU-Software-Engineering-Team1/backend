@@ -37,7 +37,7 @@ public class LoginTest {
                 .userPassword("1234")
                 .userName("테스터1")
                 .userPhoneNumber("012345")
-                .userCampus("NATURAL")
+                .userCampus("NATURAL_SCIENCE")
                 .userAge(20)
                 .userGender("MALE")
                 .userTags(List.of("친목","맛집"))
