@@ -48,7 +48,7 @@ public class RecruitService {
                 List<TagType> userTags = user.getUserTags().stream().map(UserTag::getUserTag).collect(Collectors.toList()); // 이름들을 리스트로 수집
                 for (TagType tag : tags) {
                     if (userTags.contains(tag)) {
-                        RecruitingUserDto data = new RecruitingUserDto(user.getId(), user.getUsername(),
+                        RecruitingUserDto data = new RecruitingUserDto(user.getId(), user.getUserNames(),
                                 user.getUserGender(), user.getUserAge(), user.getUserPhone(), user.getUserEmail(),
                                 user.getUserCampus(), user.getUserIntroduction(), userTags, user.getRoles().get(0));
                         if (!result.contains(data)) {
