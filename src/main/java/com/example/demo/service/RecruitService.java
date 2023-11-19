@@ -42,12 +42,15 @@ public class RecruitService {
             List<TagType> tags = list.stream().map(UnionTag::getUnionTag).collect(Collectors.toList()); // 이름들을 리스트로 수집
 
             List<Users> users = loginRepository.findAllUserTags();
+
             List<RecruitingUserDto> result = new ArrayList<>();
             for (Users user : users) {
                 List<TagType> userTags = user.getUserTags().stream().map(UserTag::getUserTag).collect(Collectors.toList()); // 이름들을 리스트로 수집
                 for (TagType tag : tags) {
                     if (userTags.contains(tag)) {
-                        RecruitingUserDto data = new RecruitingUserDto(user.getId(), user.getUsername(), user.getUserGender(), user.getUserAge(), user.getUserPhone(), user.getUserEmail(), user.getUserCampus(), user.getUserIntroduction(), userTags);
+                        RecruitingUserDto data = new RecruitingUserDto(user.getId(), user.getUserNames(),
+                                user.getUserGender(), user.getUserAge(), user.getUserPhone(), user.getUserEmail(),
+                                user.getUserCampus(), user.getUserIntroduction(), userTags, user.getRoles().get(0));
                         if (!result.contains(data)) {
                             result.add(data);
                         }
@@ -75,7 +78,9 @@ public class RecruitService {
                     .map(UserTag::getUserTag) // Player 객체를 이름(String)으로 매핑
                     .collect(Collectors.toList()); // 이름들을 리스트로 수집
 
-            RecruitingUserDto result = new RecruitingUserDto(real.getId(), real.getUsername(), real.getUserGender(), real.getUserAge(), real.getUserPhone(), real.getUserEmail(), real.getUserCampus(), real.getUserIntroduction(), userTags);
+            RecruitingUserDto result = new RecruitingUserDto(real.getId(), real.getUserNames(), real.getUserGender(),
+                    real.getUserAge(), real.getUserPhone(), real.getUserEmail(), real.getUserCampus(),
+                    real.getUserIntroduction(), userTags, real.getRoles().get(0));
             return response.success(result, "Union List", HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e.getMessage());

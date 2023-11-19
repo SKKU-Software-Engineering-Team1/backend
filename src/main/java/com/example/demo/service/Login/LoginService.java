@@ -67,7 +67,7 @@ public class LoginService {
             try {
 
                 GenderType genderType = GenderType.getGender(userGender);
-                CampusType campType = CampusType.getCampus(userCampus);
+                CampusType campType = CampusType.valueOf(userCampus);
 
                 Users users = Users.builder()
                         .userEmail(userEmail)
@@ -126,7 +126,7 @@ public class LoginService {
             try {
 
                 GenderType genderType = GenderType.getGender(userGender);
-                CampusType campType = CampusType.getCampus(userCampus);
+                CampusType campType = CampusType.valueOf(userCampus);
 
                 Users users = Users.builder()
                         .userEmail(userEmail)
