@@ -78,7 +78,7 @@ public class RecruitService {
                     .map(UserTag::getUserTag) // Player 객체를 이름(String)으로 매핑
                     .collect(Collectors.toList()); // 이름들을 리스트로 수집
 
-            RecruitingUserDto result = new RecruitingUserDto(real.getId(), real.getUsername(), real.getUserGender(),
+            RecruitingUserDto result = new RecruitingUserDto(real.getId(), real.getUserNames(), real.getUserGender(),
                     real.getUserAge(), real.getUserPhone(), real.getUserEmail(), real.getUserCampus(),
                     real.getUserIntroduction(), userTags, real.getRoles().get(0));
             return response.success(result, "Union List", HttpStatus.OK);
