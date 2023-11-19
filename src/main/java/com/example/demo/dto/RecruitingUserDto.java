@@ -22,4 +22,5 @@ public class RecruitingUserDto {
     private CampusType userCampus;
     private String userIntroduction;
     private List<TagType> userTags;
+    private String userRole;
 }
