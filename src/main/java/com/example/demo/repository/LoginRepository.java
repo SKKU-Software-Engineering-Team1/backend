@@ -22,7 +22,5 @@ public interface LoginRepository extends JpaRepository<Users, Long> {
     @Query("SELECT u FROM Users u JOIN FETCH u.userTags WHERE u.userEmail = :userEmail")
     Users findUserWithUserTags(@Param("userEmail") String userEmail);
 
-//    @EntityGraph(attributePaths = "userTags")
-//    Users findUserWithUserTagsByUserEmail(String userEmail);
 
 }

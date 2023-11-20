@@ -43,10 +43,26 @@ public class LoginTest {
     //             .userTags(List.of("친목","맛집"))
     //             .build();
 
+
     //     // 위의 요소 중 하나라도 빠져있는 경우 에러가 발생!
     //     // 예를 들면 친목, 맛집 등의 태그가 null인 경우 에러 발생!
     //     Assertions.assertThat(loginService.signUp(signUpDto).getStatusCode()).isEqualTo(HttpStatus.OK);
     // }
+
+
+    @DisplayName("없는 계정을 로그인으로 요청한 경우에는 400번 코드를 내보낸다.")
+    @Test
+    void LoginTokenTest2(){
+        LoginDto loginDto = LoginDto.builder()
+                .userEmail("test2@g.skku.edu")
+                .userPassword("1234")
+                .build();
+
+        ResponseEntity<?> responseEntity = loginService.login(loginDto);
+        Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+        // AccessToken: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGcuc2trdS5lZHUiLCJhdXRoIjoiIiwiZXhwIjoxNzAwMzY2ODc5fQ.pwg9cNyOnfDPW1mcVbMBvSEt8RmPdtGLr3o4Uj2t9EA
+        // RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGcuc2trdS5lZHUiLCJhdXRoIjoiIiwiZXhwIjoxNzAwOTY4MDc5fQ.EAgCa3mGUH6Jz_LGGWscpPoXknLOqnB0zL3tNh-sf4Q
+    }
 
     @DisplayName("로그인을 하면 AccessToken과 RefreshToken을 부여받는다.")
     @Test
@@ -58,21 +74,9 @@ public class LoginTest {
 
         ResponseEntity<?> responseEntity = loginService.login(loginDto);
         System.out.println(responseEntity.getBody());
-        // AccessToken: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGcuc2trdS5lZHUiLCJhdXRoIjoiIiwiZXhwIjoxNzAwMDU1MDk5fQ.4LJEAJFNq3RvPoPG73y2Yg949dnwWOvUPtdIMR5NSEE
-        // RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGcuc2trdS5lZHUiLCJhdXRoIjoiIiwiZXhwIjoxNzAwNjU2Mjk5fQ.r4Ao56SI5PQ3ld9kA96vFXghJzgWUKFBwRPslDhwE6E
+        // AccessToken: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGcuc2trdS5lZHUiLCJhdXRoIjoiIiwiZXhwIjoxNzAwMzY2ODc5fQ.pwg9cNyOnfDPW1mcVbMBvSEt8RmPdtGLr3o4Uj2t9EA
+        // RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGcuc2trdS5lZHUiLCJhdXRoIjoiIiwiZXhwIjoxNzAwOTY4MDc5fQ.EAgCa3mGUH6Jz_LGGWscpPoXknLOqnB0zL3tNh-sf4Q
     }
 
-    @DisplayName("유효하지 않은 토큰을 요청과 함께 받은 경우 ")
-    @Test
-    void LoginTokenTest2(){
-        LoginDto loginDto = LoginDto.builder()
-                .userEmail("test@g.skku.edu")
-                .userPassword("1234")
-                .build();
 
-        ResponseEntity<?> responseEntity = loginService.login(loginDto);
-        System.out.println(responseEntity.getBody());
-        // AccessToken: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGcuc2trdS5lZHUiLCJhdXRoIjoiIiwiZXhwIjoxNzAwMDU1MDk5fQ.4LJEAJFNq3RvPoPG73y2Yg949dnwWOvUPtdIMR5NSEE
-        // RefreshToken: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGcuc2trdS5lZHUiLCJhdXRoIjoiIiwiZXhwIjoxNzAwNjU2Mjk5fQ.r4Ao56SI5PQ3ld9kA96vFXghJzgWUKFBwRPslDhwE6E
-    }
 }

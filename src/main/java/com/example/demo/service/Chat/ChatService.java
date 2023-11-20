@@ -144,8 +144,10 @@ public class ChatService {
 
             for(ChatRoomInfo chatRoomInfo: ChatRoomInfos){
                 ChatRoom chatRoom = chatRoomRepository.findChatWithRoomId(chatRoomInfo.getRoomId());
-                ChatText chatText = chatRoom.getChatTexts().get((chatRoom.getChatTexts().size()-1));
+                List<ChatText> chatTexts = chatRoom.getChatTexts();
+                Collections.sort(chatTexts, (text1, text2)->text1.getChatTextDate().compareTo(text2.getChatTextDate()));
 
+                ChatText chatText = chatTexts.get(chatTexts.size()-1);
                 ShortChatInfo shortChatInfo = ShortChatInfo.builder()
                         .roomId(chatRoom.getRoomId())
                         .lastMessage(chatText.getChatTextContent())
