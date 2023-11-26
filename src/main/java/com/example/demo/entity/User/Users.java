@@ -68,7 +68,6 @@ public class Users implements UserDetails {
     @Builder.Default
     private List<String> roles = new ArrayList<>();
 
-
     // User와 String을 받으면 해당하는 userTag List 작성
     public static List<UserTag> makeUserTags(Users users, List<String> userTags) {
 

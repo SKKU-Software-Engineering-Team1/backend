@@ -26,10 +26,10 @@ public class UnionsController {
     }
 
 
-    @PostMapping("/regUni")
-    public ResponseEntity<?> signUp(@RequestBody UnionsDto requestBody) {
-        return unionService.regUnion(requestBody);
-    }
+//    @PostMapping("/regUni")
+//    public ResponseEntity<?> signUp(@RequestBody UnionsDto requestBody) {
+//        return unionService.regUnion(requestBody);
+//    }
 
 
 }

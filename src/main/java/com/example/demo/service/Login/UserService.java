@@ -50,6 +50,7 @@ public class UserService {
             String userCampus = users1.getUserCampus().toString();
 
             UserDto userDto = UserDto.builder()
+                    .userId(users1.getId())
                     .userName(users1.getUserNames())
                     .userGender(userGender)
                     .userAge(users1.getUserAge())
@@ -80,7 +81,9 @@ public class UserService {
             for(int i = 0; i < userTagList.size() ; i++){
                 userTags.add(userTagList.get(i).getUserTag().toString());
             }
+
             UserDto userDto = UserDto.builder()
+                    .userId(users.getId())
                     .userName(users.getUserNames())
                     .userGender(userGender)
                     .userAge(users.getUserAge())

@@ -109,73 +109,73 @@ public class UnionService {
             return response.fail("INTERNAL_SERVER_ERROR", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    public ResponseEntity<?> regUnion(UnionsDto dto) {
-
-
-        Long unionId = dto.getUnions_id();
-        String unionName = dto.getUnionName();
-        UnionCategoryType unionCategory = dto.getUnionCategory();
-        String unionIntroduction = dto.getUnionIntroduction();
-        String unionRecruit = dto.getUnionRecruit();
-        LocalDate unionRecruitDateStart = dto.getUnionRecruitDateStart();
-        LocalDate unionRecruitDateEnd = dto.getUnionRecruitDateEnd();
-//        boolean unionSkkuYn = dto.getUnionSkkuYn();
-        UnionSubType unionSkkuSub = dto.getUnionSkkuSub();
-        String unionDues = dto.getUnionDues();
-        String unionContactPhone = dto.getUnionContactPhone();
-        String unionKakao = dto.getUnionKakao();
-        String unionSns = dto.getUnionSns();
-        String unionContactMail = dto.getUnionContactMail();
-        String unionYears = dto.getUnionYears();
-        List<UnionTag> unionTags = dto.getUnionTags();
-
-        // Name이 DB 내부에 있는지만 확인
-//        final boolean unionExist = UnionsRepository.existsByUnionName(unionName);
-        final boolean unionExist = false;
-        // 유저 없음 회원가입 가능!
-        if (!unionExist) {
-
-            try {
-
-
-
-                Unions uni = Unions.builder()
-                        .Id(unionId)
-                        .unionName(unionName)
-                        .unionCategory(unionCategory)
-                        .unionIntroduction(unionIntroduction)
-                        .unionRecruit(unionRecruit)
-                        .unionRecruitDateStart(unionRecruitDateStart)
-                        .unionRecruitDateEnd(unionRecruitDateEnd)
-                        .unionSkkuYn(false)
-                        .unionSkkuSub(unionSkkuSub)
-                        .unionDues(unionDues)
-                        .unionContactPhone(unionContactPhone)
-                        .unionKakao(unionKakao)
-                        .unionSns(unionSns)
-                        .unionContactMail(unionContactMail)
-                        .unionYears(unionYears)
-                        .unionTags(unionTags)
-                        .build();
-
-
-                // user 정보 저장
-                unionsRepository.save(uni);
-
-//                // user Tag 정보도 DB에 저장
-//                for (UserTag userTag : userTagList) {
-//                    userTagRepository.save(userTag);
-//                }
-
-            } catch (Exception e) {
-                return response.fail("데이터 베이스 오류입니다.", HttpStatus.BAD_REQUEST);
-            }
-
-        } else {
-            return response.fail("이미 등록된 동아리입니다.", HttpStatus.BAD_REQUEST);
-        }
-
-        return response.success("회원가입에 성공했습니다.");
-    }
+//    public ResponseEntity<?> regUnion(UnionsDto dto) {
+//
+//
+//        Long unionId = dto.getUnions_id();
+//        String unionName = dto.getUnionName();
+//        UnionCategoryType unionCategory = dto.getUnionCategory();
+//        String unionIntroduction = dto.getUnionIntroduction();
+//        String unionRecruit = dto.getUnionRecruit();
+//        LocalDate unionRecruitDateStart = dto.getUnionRecruitDateStart();
+//        LocalDate unionRecruitDateEnd = dto.getUnionRecruitDateEnd();
+////        boolean unionSkkuYn = dto.getUnionSkkuYn();
+//        UnionSubType unionSkkuSub = dto.getUnionSkkuSub();
+//        String unionDues = dto.getUnionDues();
+//        String unionContactPhone = dto.getUnionContactPhone();
+//        String unionKakao = dto.getUnionKakao();
+//        String unionSns = dto.getUnionSns();
+//        String unionContactMail = dto.getUnionContactMail();
+//        String unionYears = dto.getUnionYears();
+//        List<TagType> unionTags = dto.getUnionTags();
+//
+//        // Name이 DB 내부에 있는지만 확인
+////        final boolean unionExist = UnionsRepository.existsByUnionName(unionName);
+//        final boolean unionExist = false;
+//        // 유저 없음 회원가입 가능!
+//        if (!unionExist) {
+//
+//            try {
+//
+//
+//
+//                Unions uni = Unions.builder()
+//                        .Id(unionId)
+//                        .unionName(unionName)
+//                        .unionCategory(unionCategory)
+//                        .unionIntroduction(unionIntroduction)
+//                        .unionRecruit(unionRecruit)
+//                        .unionRecruitDateStart(unionRecruitDateStart)
+//                        .unionRecruitDateEnd(unionRecruitDateEnd)
+//                        .unionSkkuYn(false)
+//                        .unionSkkuSub(unionSkkuSub)
+//                        .unionDues(unionDues)
+//                        .unionContactPhone(unionContactPhone)
+//                        .unionKakao(unionKakao)
+//                        .unionSns(unionSns)
+//                        .unionContactMail(unionContactMail)
+//                        .unionYears(unionYears)
+//                        .unionTags(unionTags)
+//                        .build();
+//
+//
+//                // user 정보 저장
+//                unionsRepository.save(uni);
+//
+////                // user Tag 정보도 DB에 저장
+////                for (UserTag userTag : userTagList) {
+////                    userTagRepository.save(userTag);
+////                }
+//
+//            } catch (Exception e) {
+//                return response.fail("데이터 베이스 오류입니다.", HttpStatus.BAD_REQUEST);
+//            }
+//
+//        } else {
+//            return response.fail("이미 등록된 동아리입니다.", HttpStatus.BAD_REQUEST);
+//        }
+//
+//        return response.success("회원가입에 성공했습니다.");
+//    }
 
 }
